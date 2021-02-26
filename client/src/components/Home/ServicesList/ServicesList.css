@@ -1,0 +1,17 @@
+.service-list{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.service-box{
+  width: 18%;
+  height: 300px;
+  border: 1px solid black;
+  margin: 5px auto;
+}
+
+.Services-Title{
+  margin: 40px;
+  text-align: center;
+}
