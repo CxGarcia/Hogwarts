@@ -1,0 +1,37 @@
+nav{
+	background-color: #5f4dee;
+	box-shadow: 0 0 0 2px  blue;
+	font-family: 'Roboto', sans-serif;
+	font-weight: bold;
+}
+
+
+.logo-image{
+	width: 4.4375rem;
+	height: 4.75rem;
+	margin: 0px 30px ;
+}
+
+.nav-ul{
+	margin-right: 40px;	
+}
+
+.nav-item{
+	padding: 0 10px;
+	color: #f7f5f5;
+}
+
+.nav-btn{
+	background-color: transparent;
+	border: 2px solid white;
+	border-radius: 10px;
+	padding:  8px 15px;
+	color: white;
+	font-weight: bold;
+	margin: 0 10px 0 20px;
+}
+
+.nav-btn:hover {
+	background-color: white;
+	color: #5f4dee ;
+}
