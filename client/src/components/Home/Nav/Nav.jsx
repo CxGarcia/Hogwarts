@@ -4,7 +4,7 @@ import imgSrc from './imgs/Icon.png';
 const Nav = (props) => {
 	return (
 		<>
-			<nav className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+			<nav className="navbar navbar-expand-lg navbar-dark navbar-custom ">
 				<img className="navbar-brand logo-image" src={imgSrc} alt="badge"></img>
 
 				<ul className="nav-ul navbar-nav ml-auto">

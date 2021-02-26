@@ -1,8 +1,9 @@
 nav{
 	background-color: #5f4dee;
-	box-shadow: 0 0 0 2px  blue;
+	box-shadow: 0 0 0 4px  #5A49E0;
 	font-family: 'Roboto', sans-serif;
 	font-weight: bold;
+
 }
 
 
@@ -18,7 +19,12 @@ nav{
 
 .nav-item{
 	padding: 0 10px;
+}
+
+.nav-item a {
+	
 	color: #f7f5f5;
+	font-size: 1rem;
 }
 
 .nav-btn{
