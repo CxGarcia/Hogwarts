@@ -1,6 +1,7 @@
 
 .footer-content{
   display: flex;
+  margin-top: -1px;
   background-color: #5F4DEF;
   padding: 8% 5%;
   justify-content: space-around;

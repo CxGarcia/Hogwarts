@@ -5,10 +5,14 @@
 }
 
 .service-box{
-  width: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 17%;
   height: 300px;
-  border: 1px solid black;
-  margin: 5px auto;
+  border: 1px solid #5F4DEF;
+  border-radius: 25px;
+  margin: 10px auto;
 }
 
 .Services-Title{
@@ -22,4 +26,16 @@
 text-decoration-color: #5F4DEE;
 -webkit-text-decoration-style: wavy;
 text-decoration-style: wavy;
+}
+
+
+.services-img{
+  width: 220px;
+  height: 220px;
+  margin:auto;
+}
+
+.service-head{
+  font-size: 1.3rem;
+  text-align: center;
 }

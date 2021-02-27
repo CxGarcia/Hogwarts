@@ -21,8 +21,12 @@ const ServicesList = (props) => {
 				{services.map((service) => {
 					return (
 						<div className="service-box">
-							<img src={'./imgs/' + { service } + '.png'} alt="lol"></img>
-							<h3>{service}</h3>
+							<img
+								className="services-img"
+								src={'/imgs/' + service + '.png'}
+								alt={service}
+							></img>
+							<h3 className="service-head">{service}</h3>
 						</div>
 					);
 				})}
