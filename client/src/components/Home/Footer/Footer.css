@@ -1,0 +1,33 @@
+
+.footer-content{
+  display: flex;
+  background-color: #5F4DEF;
+  padding: 8% 5%;
+  justify-content: space-around;
+  color: white;
+  text-align: center;
+}
+
+.footer-col-middle , .footer-col-last , .footer-col-first{
+ flex: 1;
+}
+
+
+.link{
+  color: white ;
+}
+
+.fas{
+  padding-right: 10px;
+}
+
+.social-media-icon{
+  margin: 5%;
+  font-size: 1.5rem;
+}
+
+.social-media-icon:hover{
+  color: #5F4DEF;
+  cursor: pointer;
+  background-color: antiquewhite;
+}

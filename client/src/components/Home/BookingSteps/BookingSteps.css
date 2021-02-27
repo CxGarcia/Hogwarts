@@ -1,0 +1,44 @@
+.booking-steps-container{
+  padding: 60px 0 60px 0;
+  margin: 60px auto;
+  background-color: #F4F7FE;  
+
+}
+
+.booking-steps-heading{
+  margin: 40px auto 60px auto;
+  text-align: center;
+}
+
+.steps{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.steps h2{
+  border: 1px solid blue;
+  border-radius: 90px;
+  font-size: 1.2rem;
+  padding: 30px;
+  transition:transform .8s ease-in-out;
+}
+
+.steps h2:hover{
+  border: 2px solid black;
+  background-image: url('./imgs/dotted.svg');
+  transform: scale(1.2) rotateY(360deg) ;
+}
+
+.arrow{
+  height: 100px;
+  width: 150px;
+  border-radius: 50%;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+  transition:transform .8s ease-in-out;
+}
+.arrow:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
