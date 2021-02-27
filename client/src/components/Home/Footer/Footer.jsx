@@ -51,6 +51,20 @@ const Footer = (props) => {
 					</ul>
 				</div>
 			</div>
+			<div className="copyright">
+				<div className="container">
+					<div className="row">
+						<div className="col-lg-12">
+							<p className="p-small">
+								Copyright © 2021{' '}
+								<a href="https://github.com/AbdallahAltokhy">
+									Abdallah Altokhy
+								</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
