@@ -1,1 +1,43 @@
-//TODO: FIX server List component in react
+//TODO: Make the website responsive 
+
+
+//Today - Sunday
+  
+  1-Finish booking form "DONE"
+  2- Finish payment form "DONE"
+  3- review routs & API services structure 
+
+
+  //form example 
+  	<div className="booking-form">
+			<h1>FORM HERE </h1>
+
+			<form action="">
+				<div className="form-row">
+					<div className="col">
+						<label htmlFor="name">Name</label>
+						<input type="text" className="form-control" placeholder="Name" />
+					</div>
+				</div>
+				<div className="form-row">
+					<div className="col">
+						<label htmlFor="email">Email</label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="email@example.com"
+						/>
+					</div>
+					<div className="col">
+						<label htmlFor="phone-number">Phone Number</label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="+039-000-000-00"
+						/>
+					</div>
+				</div>
+				{/* <select multiple={true} value={['B', 'C']} /> */}
+			</form>
+		</div>
+	

@@ -3,7 +3,7 @@ import arrow from './imgs/arrow.svg';
 
 const BookingSteps = (props) => {
 	return (
-		<div className="booking-steps-container">
+		<div id="BOOK" className="booking-steps-container">
 			<h1 className="booking-steps-heading">FOUR EASY STEPS</h1>
 			<div className="steps">
 				<h2>CHOOSE</h2>

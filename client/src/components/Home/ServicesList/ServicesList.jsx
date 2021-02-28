@@ -15,7 +15,7 @@ const services = [
 
 const ServicesList = (props) => {
 	return (
-		<div>
+		<div id="SERVICES">
 			<h1 className="Services-Title">Our Services</h1>
 			<div className="service-list">
 				{services.map((service) => {

@@ -3,7 +3,7 @@ import footer from './imgs/Footer.svg';
 
 const Footer = (props) => {
 	return (
-		<div className="footer-container">
+		<div id="CONTACT" className="footer-container">
 			<div className="footer-svg">
 				<img src={footer} alt="" />
 			</div>
