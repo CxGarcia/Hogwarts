@@ -1,5 +1,6 @@
 import './Nav.css';
 import imgSrc from './imgs/Icon.png';
+import { Link } from '@reach/router';
 
 const Nav = (props) => {
 	return (
@@ -12,14 +13,18 @@ const Nav = (props) => {
 
 				<ul className="nav-ul navbar-nav ml-auto">
 					<li className="nav-item">
-						<a className="nav-link page-scroll" href="#HOME">
-							HOME <span className="sr-only">(current)</span>
-						</a>
+						<Link to="/">
+							<a className="nav-link page-scroll" href="#HOME">
+								HOME <span className="sr-only">(current)</span>
+							</a>
+						</Link>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link page-scroll" href="#SERVICES">
-							SERVICES
-						</a>
+						<Link to="/">
+							<a className="nav-link page-scroll" href="#SERVICES">
+								SERVICES
+							</a>
+						</Link>
 					</li>
 					<li className="nav-item">
 						<a className="nav-link page-scroll" href="#BOOK">

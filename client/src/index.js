@@ -1,20 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
-// import Home from './components/Home/Home';
 import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
+import Home from './components/Home/Home';
 import Footer from './components/Common/Footer/Footer';
 import Nav from './components/Common/Nav/Nav';
 import Checkout from './components/Checkout/Checkout';
+import { Router } from "@reach/router";
 
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <Nav />
-    <Checkout />
+    <Router>
+      <Home path="/" />
+      <Checkout path="/checkout" />
+    </Router>
     <Footer />
-  </React.StrictMode>,
+
+  </>
+  ,
   document.getElementById('root')
 );
 

@@ -1,4 +1,5 @@
 import './ServicesList.css';
+import { Link } from '@reach/router';
 
 const services = [
 	'Home Cleaning',
@@ -21,12 +22,14 @@ const ServicesList = (props) => {
 				{services.map((service) => {
 					return (
 						<div className="service-box">
-							<img
-								className="services-img"
-								src={'/imgs/' + service + '.png'}
-								alt={service}
-							></img>
-							<h3 className="service-head">{service}</h3>
+							<Link to="/checkout">
+								<img
+									className="services-img"
+									src={'/imgs/' + service + '.png'}
+									alt={service}
+								></img>
+								<h3 className="service-head">{service}</h3>
+							</Link>
 						</div>
 					);
 				})}

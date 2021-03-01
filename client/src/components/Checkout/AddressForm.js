@@ -42,6 +42,26 @@ export default function AddressForm () {
             autoComplete="mobile"
           />
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="Apartment-size"
+            name="Apartment-size"
+            label="Apartment-size"
+            fullWidth
+            autoComplete="Apartment-size"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="rooms"
+            name="rooms"
+            label="Number of rooms"
+            fullWidth
+            autoComplete="rooms"
+          />
+        </Grid>
         <Grid item xs={12}>
           <TextField
             required

@@ -48,7 +48,7 @@ export default function Review () {
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            $43.44
           </Typography>
         </ListItem>
       </List>
