@@ -46,7 +46,11 @@ text-decoration-style: wavy;
   text-align: center;
 }
 
-.service-head:hover{
+.service-box-inner:hover{
   text-decoration: none;
   color: white;
+}
+
+.service-box-inner{
+  text-decoration: none !important;
 }

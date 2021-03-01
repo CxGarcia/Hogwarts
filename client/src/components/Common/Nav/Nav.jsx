@@ -27,18 +27,24 @@ const Nav = (props) => {
 						</Link>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link page-scroll" href="#BOOK">
-							BOOK
-						</a>
+						<Link to="/">
+							<a className="nav-link page-scroll" href="#BOOK">
+								BOOK
+							</a>
+						</Link>
 					</li>
 					<li className="nav-item">
-						<a className="nav-link page-scroll" href="#CONTACT">
-							CONTACT US
-						</a>
+						<Link to="/">
+							<a className="nav-link page-scroll" href="#CONTACT">
+								CONTACT US
+							</a>
+						</Link>
 					</li>
 
 					<li className="nav-item">
-						<button className="nav-btn">LOG IN</button>
+						<Link to="/login">
+							<button className="nav-btn">LOG IN</button>
+						</Link>
 					</li>
 				</ul>
 			</nav>

@@ -22,7 +22,7 @@ const ServicesList = (props) => {
 				{services.map((service) => {
 					return (
 						<div className="service-box">
-							<Link to="/checkout">
+							<Link className="service-box-inner" to="/checkout">
 								<img
 									className="services-img"
 									src={'/imgs/' + service + '.png'}

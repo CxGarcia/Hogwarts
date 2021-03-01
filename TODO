@@ -1,12 +1,16 @@
 //TODO: Make the website responsive 
 
 
-//Today - Sunday
+//Sunday
   
   1-Finish booking form "DONE"
   2- Finish payment form "DONE"
-  3- review routs & API services structure 
+  3- review routs & API services structure  "DONE"
 
+
+
+//Today - Monday
+1-Create react project and connect with Stripe API 
 
   //form example 
   	<div className="booking-form">
