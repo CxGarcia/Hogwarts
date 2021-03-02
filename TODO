@@ -9,8 +9,19 @@
 
 
 
-//Today - Monday
+// Monday
 1-Create react project and connect with Stripe API 
+
+
+//Today - Thursday
+1-go through Authentication concepts 
+
+
+//Tomorrow Wednesday
+
+--Try to change the content of the form & use react-form-hook
+
+
 
   //form example 
   	<div className="booking-form">
