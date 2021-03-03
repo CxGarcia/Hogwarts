@@ -1,9 +1,5 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 
 export default function PaymentForm () {
   return (
@@ -11,39 +7,34 @@ export default function PaymentForm () {
       <Typography variant="h6" gutterBottom>
         Payment method
       </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Name on card" fullWidth autoComplete="cc-name" />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            label="Card number"
-            fullWidth
-            autoComplete="cc-number"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField required id="expDate" label="Expiry date" fullWidth autoComplete="cc-exp" />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cvv"
-            label="CVV"
-            helperText="Last three digits on signature strip"
-            fullWidth
-            autoComplete="cc-csc"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
-            label="Remember credit card details for next time"
-          />
-        </Grid>
-      </Grid>
+      <div className="booking-form">
+        <form action="">
+          <div className="form-row">
+            <div className="col">
+              <label htmlFor="name">Name</label>
+              <input type="text" className="form-control" placeholder="Name" />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="col">
+              <label htmlFor="email">Email</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="email@example.com"
+              />
+            </div>
+            <div className="col">
+              <label htmlFor="phone-number">Phone Number</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="+039-000-000-00"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
     </React.Fragment>
   );
 }

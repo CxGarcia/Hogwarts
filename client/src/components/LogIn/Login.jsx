@@ -1,23 +1,56 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import './Login.css';
+// import { useForm } from 'react-hook-form';
 
 export default function Login() {
-	const { register, handleSubmit, watch, errors } = useForm();
-	const onSubmit = (data) => console.log(data);
+	// const { register, handleSubmit, watch, errors } = useForm();
+	// const onSubmit = (data) => console.log(data);
 
-	console.log(watch('example'));
+	// console.log(watch('example'));
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<input
-				name="example"
-				defaultValue="test"
-				ref={register}
-				placeholder="HI"
-			/>
-			<input name="exampleRequired" ref={register({ required: true })} />
-			{errors.exampleRequired && <span>This field is required</span>}
-			<input type="submit" />
-		</form>
+		<div className="login-container">
+			<form className="login-form">
+				<h3>Log in</h3>
+
+				<div className="form-group">
+					<label>Email</label>
+					<input
+						type="email"
+						className="form-control"
+						placeholder="Enter email"
+					/>
+				</div>
+
+				<div className="form-group">
+					<label>Password</label>
+					<input
+						type="password"
+						className="form-control"
+						placeholder="Enter password"
+					/>
+				</div>
+
+				<div className="form-group">
+					<div className="custom-control custom-checkbox">
+						<input
+							type="checkbox"
+							className="custom-control-input"
+							id="customCheck1"
+						/>
+						<label className="custom-control-label" htmlFor="customCheck1">
+							Remember me
+						</label>
+					</div>
+				</div>
+
+				<button type="submit" className="btn btn-primary btn-lg btn-block">
+					Sign in
+				</button>
+				<p className="forgot-password text-right">
+					Forgot password? It is your fault
+				</p>
+			</form>
+		</div>
 	);
 }
