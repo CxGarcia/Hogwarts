@@ -1,10 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require("cors");
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
 const router = require('./router');
-const dbConnection = require('./db');
+const sequelize = require('./db');
 
 const app = express();
 
@@ -22,11 +22,12 @@ app.use(bodyParser.json());
 app.use(router);
 
 
-// MySQL connection
-dbConnection.connect(error => {
-  if (error) throw error;
-  console.log("Successfully connected to the database 🕺🏻🎯");
-});
+// DB connection
+
+// sequelize.sync({ force: true });
+sequelize.authenticate()
+  .then(console.log('DB Connection has been established successfully. 🚀🕺🏻🚀🕺🏻'))
+  .catch(error => { console.error('Unable to connect to the database:', error); });
 
 
 const port = process.env.PORT || 4000;
