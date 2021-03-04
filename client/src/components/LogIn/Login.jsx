@@ -1,34 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import './Login.css';
-// import { useForm } from 'react-hook-form';
+import img from './imgs/undraw_Nature_fun_re_iney.svg';
 
 export default function Login() {
-	// const { register, handleSubmit, watch, errors } = useForm();
-	// const onSubmit = (data) => console.log(data);
+	const { register, handleSubmit, errors } = useForm();
 
-	// console.log(watch('example'));
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const onSubmit = ({ email, password }) => {
+		setEmail(email);
+		setPassword(password);
+		console.log(email);
+		console.log(password);
+	};
 
 	return (
 		<div className="login-container">
-			<form className="login-form">
+			<form className="login-form" onSubmit={handleSubmit(onSubmit)}>
 				<h3>Log in</h3>
 
 				<div className="form-group">
 					<label>Email</label>
 					<input
+						name="email"
 						type="email"
 						className="form-control"
 						placeholder="Enter email"
+						ref={register({ required: true })}
 					/>
+					{errors.email && <span>This field is required</span>}
 				</div>
 
 				<div className="form-group">
 					<label>Password</label>
 					<input
 						type="password"
+						name="password"
 						className="form-control"
 						placeholder="Enter password"
+						ref={register({ required: true })}
 					/>
+					{errors.password && <span>This field is required</span>}
 				</div>
 
 				<div className="form-group">
@@ -48,9 +62,10 @@ export default function Login() {
 					Sign in
 				</button>
 				<p className="forgot-password text-right">
-					Forgot password? It is your fault
+					Forgot password? It is my fault
 				</p>
 			</form>
+			<img className="login-img" src={img} alt="" />
 		</div>
 	);
 }

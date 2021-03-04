@@ -1,4 +1,14 @@
+.sign-up-container{
+  display: flex;
+
+}
+
 .registration-form{
-  margin: 10% auto;
-  width: 50% !important;
+  margin: 8% auto;
+  width: 30% ;
+  
+}
+
+.sign-up-img{
+  width: 50%;
 }

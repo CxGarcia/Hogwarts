@@ -9,7 +9,9 @@ const Nav = (props) => {
 				id="HOME"
 				className="navbar navbar-expand-lg navbar-dark navbar-custom "
 			>
-				<img className="navbar-brand logo-image" src={imgSrc} alt="badge" />
+				<Link to="/">
+					<img className="navbar-brand logo-image" src={imgSrc} alt="badge" />
+				</Link>
 
 				<ul className="nav-ul navbar-nav ml-auto">
 					<li className="nav-item">
