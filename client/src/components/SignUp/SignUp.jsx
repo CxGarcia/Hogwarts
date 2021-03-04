@@ -3,6 +3,8 @@ import { Link } from '@reach/router';
 import { useForm } from 'react-hook-form';
 import './SignUp.css';
 import img from './imgs/undraw_Relaxing_at_home_re_mror.svg';
+import { addCustomer } from '../../Services/customers';
+import { navigate } from '@reach/router';
 
 export default function SignUp() {
 	const { register, handleSubmit, errors } = useForm();
@@ -13,18 +15,24 @@ export default function SignUp() {
 	const [location, setLocation] = useState('');
 	const [password, setPassword] = useState('');
 
-	const onSubmit = ({ name, email, phone, location, password }) => {
+	const onSubmit = async ({ name, email, phone, location, password }) => {
 		setName(name);
 		setEmail(email);
 		setPhone(phone);
 		setLocation(location);
 		setPassword(password);
-
-		console.log(name);
-		console.log(phone);
-		console.log(email);
-		console.log(password);
-		console.log(location);
+		try {
+			const response = await addCustomer(
+				name,
+				phone,
+				email,
+				password,
+				location
+			);
+			navigate('/');
+		} catch (error) {
+			console.log('ERROR');
+		}
 	};
 
 	return (
@@ -83,6 +91,7 @@ export default function SignUp() {
 					<label>Password</label>
 					<input
 						name="password"
+						// value={password}
 						type="password"
 						className="form-control"
 						placeholder="Enter password"

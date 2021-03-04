@@ -11,8 +11,6 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 
-
-
 const useStyles = makeStyles((theme) => ({
 	appBar: {
 		position: 'relative',
@@ -54,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Service address', 'Payment details', 'Review your request'];
 
-function getStepContent (step) {
+function getStepContent(step) {
 	switch (step) {
 		case 0:
 			return <AddressForm />;
@@ -67,7 +65,7 @@ function getStepContent (step) {
 	}
 }
 
-export default function Checkout () {
+export default function Checkout() {
 	const classes = useStyles();
 	const [activeStep, setActiveStep] = React.useState(0);
 
@@ -86,7 +84,7 @@ export default function Checkout () {
 				<Paper className={classes.paper}>
 					<Typography component="h1" variant="h4" align="center">
 						Let The Magic Happen
-          </Typography>
+					</Typography>
 					<Stepper activeStep={activeStep} className={classes.stepper}>
 						{steps.map((label) => (
 							<Step key={label}>
@@ -99,38 +97,38 @@ export default function Checkout () {
 							<React.Fragment>
 								<Typography variant="h5" gutterBottom>
 									Thank you for your booking.
-                </Typography>
+								</Typography>
 								<Typography variant="subtitle1">
-									Your booking request confirmed. We have emailed your booking confirmation, and will
-									send you an update when your booking is Done.
-                </Typography>
+									Your booking request confirmed. We have emailed your booking
+									confirmation, and will send you an update when your booking is
+									Done.
+								</Typography>
 								<Typography variant="h6" gutterBottom>
 									Now relax & Let the magic happen.
-                </Typography>
+								</Typography>
 							</React.Fragment>
 						) : (
-								<React.Fragment>
-									{getStepContent(activeStep)}
-									<div className={classes.buttons}>
-										{activeStep !== 0 && (
-											<Button onClick={handleBack} className={classes.button}>
-												Back
-											</Button>
-										)}
-										<Button
-											variant="contained"
-											color="primary"
-											onClick={handleNext}
-											className={classes.button}
-										>
-											{activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+							<React.Fragment>
+								{getStepContent(activeStep)}
+								<div className={classes.buttons}>
+									{activeStep !== 0 && (
+										<Button onClick={handleBack} className={classes.button}>
+											Back
 										</Button>
-									</div>
-								</React.Fragment>
-							)}
+									)}
+									<Button
+										variant="contained"
+										color="primary"
+										onClick={handleNext}
+										className={classes.button}
+									>
+										{activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+									</Button>
+								</div>
+							</React.Fragment>
+						)}
 					</React.Fragment>
 				</Paper>
-
 			</main>
 		</>
 	);

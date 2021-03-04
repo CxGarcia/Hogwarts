@@ -2,18 +2,24 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './Login.css';
 import img from './imgs/undraw_Nature_fun_re_iney.svg';
+import { verifyCustomer } from '../../Services/customers';
+import { navigate } from '@reach/router';
 
 export default function Login() {
 	const { register, handleSubmit, errors } = useForm();
-
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const onSubmit = ({ email, password }) => {
+	const onSubmit = async ({ email, password }) => {
 		setEmail(email);
 		setPassword(password);
-		console.log(email);
-		console.log(password);
+
+		try {
+			const response = await verifyCustomer(email, password);
+			navigate('/');
+		} catch (error) {
+			console.log('error from login react', error);
+		}
 	};
 
 	return (

@@ -13,7 +13,7 @@ const authMiddleware = require('./middleware/auth');
 
 //Customers routers
 router.post('/signUp', registerUser);
-router.post('/auth', auth);
+router.post('/login', auth);
 
 
 module.exports = router;

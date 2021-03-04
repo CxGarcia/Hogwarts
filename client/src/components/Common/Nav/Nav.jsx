@@ -22,25 +22,19 @@ const Nav = (props) => {
 						</Link>
 					</li>
 					<li className="nav-item">
-						<Link to="/">
-							<a className="nav-link page-scroll" href="#SERVICES">
-								SERVICES
-							</a>
-						</Link>
+						<a className="nav-link page-scroll" href="/#SERVICES">
+							SERVICES
+						</a>
 					</li>
 					<li className="nav-item">
-						<Link to="/">
-							<a className="nav-link page-scroll" href="#BOOK">
-								BOOK
-							</a>
-						</Link>
+						<a className="nav-link page-scroll" href="/#BOOK">
+							BOOK
+						</a>
 					</li>
 					<li className="nav-item">
-						<Link to="/">
-							<a className="nav-link page-scroll" href="#CONTACT">
-								CONTACT US
-							</a>
-						</Link>
+						<a className="nav-link page-scroll" href="/#CONTACT">
+							CONTACT US
+						</a>
 					</li>
 
 					<li className="nav-item">
