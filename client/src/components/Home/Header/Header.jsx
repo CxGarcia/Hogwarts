@@ -3,7 +3,9 @@ import headerImg from './imgs/1.png';
 import header from './imgs/header.svg';
 import { Link } from '@reach/router';
 
-const Header = (props) => {
+const Header = ({ loggedIn }) => {
+	console.log('from header', loggedIn);
+
 	return (
 		<>
 			<div className="header-container">
@@ -13,9 +15,12 @@ const Header = (props) => {
 						Lorem Ipsum is not simply random text. It has roots in a piece of
 						classical Latin literature from 45 BC, making it over 2000 years old
 					</p>
-					<Link to="/signUp">
-						<button>SIGN UP</button>
-					</Link>
+
+					{loggedIn ? null : (
+						<Link to="/signUp">
+							<button>SIGN UP</button>
+						</Link>
+					)}
 				</div>
 				<div className="col-lg-6 header-img-box">
 					<img src={headerImg} alt="headerImg" />

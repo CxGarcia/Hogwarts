@@ -13,7 +13,6 @@ const verifyCustomer = (email, password) => {
     email, password
   })
     .then((response) => {
-      console.log(response);
       return response;
     });
 

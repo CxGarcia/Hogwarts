@@ -3,28 +3,11 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import { Router } from "@reach/router";
-import Home from './components/Home/Home';
-import Footer from './components/Common/Footer/Footer';
-import Nav from './components/Common/Nav/Nav';
-import Checkout from './components/Checkout/Checkout';
-import Login from './components/LogIn/Login';
-import SignUp from './components/SignUp/SignUp';
+import App from './components/App';
 
 
 ReactDOM.render(
-  <>
-    <Nav />
-    <Router>
-      <Home path="/" />
-      <Login path="/login" />
-      <SignUp path="/signUp" />
-      <Checkout path="/checkout" />
-    </Router>
-    <Footer />
-
-  </>
-  ,
+  <App />,
   document.getElementById('root')
 );
 

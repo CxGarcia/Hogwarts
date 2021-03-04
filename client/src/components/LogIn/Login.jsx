@@ -5,7 +5,7 @@ import img from './imgs/undraw_Nature_fun_re_iney.svg';
 import { verifyCustomer } from '../../Services/customers';
 import { navigate } from '@reach/router';
 
-export default function Login() {
+export default function Login({ isLoggedIn }) {
 	const { register, handleSubmit, errors } = useForm();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -17,6 +17,7 @@ export default function Login() {
 		try {
 			const response = await verifyCustomer(email, password);
 			navigate('/');
+			isLoggedIn(true);
 		} catch (error) {
 			console.log('error from login react', error);
 		}

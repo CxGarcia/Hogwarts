@@ -2,7 +2,8 @@ import './Nav.css';
 import imgSrc from './imgs/Icon.png';
 import { Link } from '@reach/router';
 
-const Nav = (props) => {
+const Nav = ({ loggedIn }) => {
+	console.log('from nav', loggedIn);
 	return (
 		<>
 			<nav
@@ -38,9 +39,18 @@ const Nav = (props) => {
 					</li>
 
 					<li className="nav-item">
-						<Link to="/login">
-							<button className="nav-btn">LOG IN</button>
-						</Link>
+						{loggedIn ? (
+							<>
+								<span>Welcome back!!</span>
+								<Link to="/profile">
+									<button className="nav-btn"> Profile</button>
+								</Link>
+							</>
+						) : (
+							<Link to="/login">
+								<button className="nav-btn">LOG IN</button>
+							</Link>
+						)}
 					</li>
 				</ul>
 			</nav>
