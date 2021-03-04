@@ -1,37 +1,35 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../db');
-const Service = require('./services-model');
-const Technician = require('./technician-model');
-const Customer = require('./customer-model');
+module.exports = (sequelize, DataTypes) => {
 
+  const Order = sequelize.define('Order', {
 
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true
+    },
 
-const Order = sequelize.define('Order', {
+    cost: {
+      type: DataTypes.DECIMAL,
+      allowNull: false,
 
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
+    },
+    paymentMethod: {
+      type: DataTypes.STRING,
+      allowNull: true,
 
-  cost: {
-    type: DataTypes.DECIMAL,
-    allowNull: false,
+    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  });
 
-  },
-  paymentMethod: {
-    type: DataTypes.STRING,
-    allowNull: true,
+  Order.associate = (model) => {
+    Order.hasOne(model.Service);
+    Order.hasOne(model.Technician);
+    Order.hasOne(model.Customer);
+  };
 
-  },
-  createdAt: DataTypes.DATE,
-  updatedAt: DataTypes.DATE,
-});
+  return Order;
 
+};
 
-// Order.hasOne(Service);
-// Order.hasOne(Technician);
-// Order.hasOne(Customer);
-
-module.exports = Order;

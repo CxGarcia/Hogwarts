@@ -1,52 +1,57 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../db');
-const Order = require('./orders-model');
+module.exports = (sequelize, DataTypes) => {
 
+  const Customer = sequelize.define('Customer', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
 
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true,
 
-const Customer = sequelize.define('Customer', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-
-  },
-  phone: {
-    type: DataTypes.STRING,
-    allowNull: true,
-
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-    validate: {
-      isEmail: {
-        msg: "Must be a valid email address",
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: {
+          msg: "Must be a valid email address",
+        }
       }
-    }
-  },
-  password: {
-    type: DataTypes.STRING(1234),
-    allowNull: false,
+    },
+    password: {
+      type: DataTypes.STRING(1234),
+      allowNull: false,
 
-  },
-  location: {
-    type: DataTypes.STRING,
-    allowNull: true,
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: true,
 
-  },
+    },
 
-  createdAt: DataTypes.DATE,
-  updatedAt: DataTypes.DATE,
-});
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+  });
 
 
-Customer.hasMany(Order);
+  Customer.associate = (model) => {
+    Customer.hasMany(model.Order, { as: 'orders', constraints: false, allowNull: true, defaultValue: null });
 
-module.exports = Customer;
+  };
+
+  return Customer;
+
+
+};
+
+
+
