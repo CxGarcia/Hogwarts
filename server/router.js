@@ -4,7 +4,7 @@ const registerUser = require('./controller/customer-controller');
 const auth = require('./controller/auth-controller');
 const { addOrder, getAllOrders } = require('./controller/order-controller');
 const authMiddleware = require('./middleware/auth');
-const pay = require('./controller/payment-controller');
+const paymentApi = require('./controller/payment-controller');
 
 //TODO: user authMiddleware when I want to manage the access for th routes 
 //to give authority to access those routes to user with certain privilege
@@ -23,7 +23,7 @@ router.get('/getOrders', getAllOrders);
 
 
 //payment 
-router.post('/create-checkout-session', pay);
+router.post('/checkout', paymentApi);
 
 
 

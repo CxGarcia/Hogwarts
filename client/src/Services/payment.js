@@ -1,62 +1,22 @@
-import React from 'react';
 import axios from 'axios';
-import Button from '@material-ui/core/Button';
 
-import {
-  CardElement,
-  useStripe,
-  useElements,
-} from '@stripe/react-stripe-js';
+const pay = async (amount, token) => {
 
-const CheckoutForm = ({ success }) => {
-  const stripe = useStripe();
-  const elements = useElements();
+  axios
+    .post('http://localhost:4000/checkout', {
+      amount,
+      token
+    })
+    .then((response) => {
+      alert('Payment Success');
+      console.log(response);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: elements.getElement(CardElement),
+    })
+    .catch((error) => {
+      console.log('Payment Error: ', error);
+      alert('Payment Error');
     });
 
-    if (!error) {
-      const { id } = paymentMethod;
-
-      try {
-        const { data } = await axios.post(
-          'http://localhost:4000/create-checkout-session',
-          {
-            id,
-            amount: 1099,
-            description: 'test',
-          }
-        );
-        console.log(data);
-        success();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
-  return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ margin: '0 auto' }}
-    >
-      <h2>Price: $10.99 USD</h2>
-
-      <CardElement />
-
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        disabled={!stripe}>Place order</Button>
-    </form>
-  );
 };
 
-
-
-export default CheckoutForm;
+export default pay;

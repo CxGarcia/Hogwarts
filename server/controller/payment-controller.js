@@ -1,33 +1,24 @@
-const Stripe = require("stripe");
 const dbConfig = require("../config/db.config");
+const Stripe = require("stripe");
 const stripe = new Stripe(dbConfig.stripeSecret);
 
 
 
-const pay = async (req, res) => {
-
-  const { id, amount, description } = req.body;
-
-  try {
-    const payment = await stripe.paymentIntents.create({
-      amount,
-      currency: "USD",
-      description,
-      payment_method: id,
-      confirm: true
-    });
-
-    console.log(payment);
-
-    return res.status(200).json({
-      confirm: "abc123"
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(400).json({
-      message: error.message
-    });
+const stripeChargeCallback = res => (stripeErr, stripeRes) => {
+  if (stripeErr) {
+    res.status(500).send({ error: stripeErr });
+  } else {
+    res.status(200).send({ success: stripeRes });
   }
 };
 
-module.exports = pay;
+const paymentApi = async (req, res) => {
+  const body = {
+    source: req.body.token.id,
+    amount: req.body.amount,
+    currency: "usd"
+  };
+  await stripe.charges.create(body, stripeChargeCallback(res));
+}
+
+module.exports = paymentApi;

@@ -8,8 +8,8 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
 import Review from './Review';
+import Payment from './PaymentForm';
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -50,22 +50,22 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const steps = ['Service details', 'Payment details', 'Review your request'];
+const steps = ['Service details', 'Payment details'];
 
-function getStepContent(step) {
-	switch (step) {
-		case 0:
-			return <AddressForm />;
-		case 1:
-			return <Review />;
-		case 2:
-			return <PaymentForm />;
-		default:
-			throw new Error('Unknown step');
+export default function Checkout({ createOrder, order }) {
+	function getStepContent(step) {
+		switch (step) {
+			case 0:
+				return (
+					<AddressForm handleNext={handleNext} createOrder={createOrder} />
+				);
+			case 1:
+				return <Review order={order} />;
+			default:
+				throw new Error('Unknown step');
+		}
 	}
-}
 
-export default function Checkout() {
 	const classes = useStyles();
 	const [activeStep, setActiveStep] = React.useState(0);
 
@@ -101,16 +101,7 @@ export default function Checkout() {
 								</Button>
 							)}
 
-							{activeStep !== steps.length - 1 ? (
-								<Button
-									variant="contained"
-									color="primary"
-									onClick={handleNext}
-									className={classes.button}
-								>
-									Next
-								</Button>
-							) : null}
+							{activeStep === 1 ? <Payment order={order} /> : null}
 						</div>
 					</React.Fragment>
 				</Paper>

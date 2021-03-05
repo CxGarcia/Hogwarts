@@ -2,103 +2,146 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import { useForm } from 'react-hook-form';
+import { makeStyles } from '@material-ui/core/styles';
 
-export default function AddressForm () {
-  return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Service Details
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} >
-          <TextField
-            required
-            id="name"
-            name="name"
-            label="Name"
-            fullWidth
-            autoComplete="given-name"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="email"
-            name="email"
-            label="Email"
-            fullWidth
-            autoComplete="email"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="mobile"
-            name="mobile"
-            label="Mobile"
-            fullWidth
-            autoComplete="mobile"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="Apartment-size"
-            name="Apartment-size"
-            label="Apartment-size"
-            fullWidth
-            autoComplete="Apartment-size"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="rooms"
-            name="rooms"
-            label="Number of rooms"
-            fullWidth
-            autoComplete="rooms"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="address"
-            name="address"
-            label="Address"
-            fullWidth
-            autoComplete="shipping address"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="datetime-local"
-            label="Prefered Date & Time"
-            type="datetime-local"
-            fullWidth
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Grid>
-        <Grid item xs={12} >
-          <TextField
-            id="info"
-            name="info"
-            label="Other Information"
-            fullWidth
-            autoComplete="info"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for Upcoming bookings"
-          />
-        </Grid>
-      </Grid>
-    </React.Fragment>
-  );
+import Button from '@material-ui/core/Button';
+
+export default function AddressForm({ createOrder, handleNext }) {
+	const useStyles = makeStyles((theme) => ({
+		button: {
+			marginTop: theme.spacing(4),
+			marginLeft: theme.spacing(50),
+			marginBottom: theme.spacing(2),
+		},
+	}));
+
+	const classes = useStyles();
+
+	const { register, handleSubmit } = useForm();
+	const onSubmit = (data) => {
+		console.log(data);
+		const { name, email, mobile, address, ApartmentSize, rooms, date } = data;
+		createOrder(
+			'Home Cleaning',
+			name,
+			email,
+			mobile,
+			address,
+			ApartmentSize,
+			rooms,
+			date,
+			400
+		);
+		handleNext();
+	};
+
+	return (
+		<React.Fragment>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<Typography variant="h6" gutterBottom>
+					Service Details
+				</Typography>
+				<Grid container spacing={3}>
+					<Grid item xs={12}>
+						<TextField
+							required
+							id="name"
+							name="name"
+							label="Name"
+							fullWidth
+							autoComplete="given-name"
+							inputRef={register}
+						/>
+					</Grid>
+					<Grid item xs={12} sm={6}>
+						<TextField
+							required
+							id="email"
+							name="email"
+							label="Email"
+							fullWidth
+							autoComplete="email"
+							inputRef={register}
+						/>
+					</Grid>
+					<Grid item xs={12} sm={6}>
+						<TextField
+							required
+							id="mobile"
+							name="mobile"
+							label="Mobile"
+							fullWidth
+							autoComplete="mobile"
+							inputRef={register}
+						/>
+					</Grid>
+					<Grid item xs={12} sm={6}>
+						<TextField
+							required
+							id="Apartment-size"
+							name="ApartmentSize"
+							label="Apartment-size"
+							fullWidth
+							autoComplete="Apartment-size"
+							inputRef={register}
+						/>
+					</Grid>
+					<Grid item xs={12} sm={6}>
+						<TextField
+							required
+							id="rooms"
+							name="rooms"
+							label="Number of rooms"
+							fullWidth
+							autoComplete="rooms"
+							inputRef={register}
+						/>
+					</Grid>
+					<Grid item xs={12}>
+						<TextField
+							required
+							id="address"
+							name="address"
+							label="Address"
+							fullWidth
+							autoComplete="shipping address"
+							inputRef={register}
+						/>
+					</Grid>
+					<Grid item xs={12}>
+						<TextField
+							id="datetime-local"
+							name="date"
+							label="Preferred Date & Time"
+							type="datetime-local"
+							fullWidth
+							InputLabelProps={{
+								shrink: true,
+							}}
+							inputRef={register}
+						/>
+					</Grid>
+					<Grid item xs={12}>
+						<TextField
+							id="info"
+							name="info"
+							label="Other Information"
+							fullWidth
+							autoComplete="info"
+							inputRef={register}
+						/>
+					</Grid>
+					<Button
+						variant="contained"
+						color="primary"
+						type="submit"
+						className={classes.button}
+					>
+						Confirm Order
+					</Button>
+				</Grid>
+			</form>
+		</React.Fragment>
+	);
 }

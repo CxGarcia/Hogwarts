@@ -5,7 +5,6 @@ const { Order } = require('../model');
 const addOrder = async (req, res) => {
 
   try {
-
     let { cost, paymentMethod, service, TechnicianId, CustomerId } = req.body;
     const order = await Order.create({ cost, paymentMethod, service, TechnicianId, CustomerId });
     return res.status(201).send(order);

@@ -21,7 +21,7 @@ const ServicesList = (props) => {
 			<div className="service-list">
 				{services.map((service) => {
 					return (
-						<div className="service-box">
+						<div key={service} className="service-box">
 							<Link className="service-box-inner" to="/checkout">
 								<img
 									className="services-img"

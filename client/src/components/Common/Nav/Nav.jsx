@@ -3,7 +3,6 @@ import imgSrc from './imgs/Icon.png';
 import { Link } from '@reach/router';
 
 const Nav = ({ loggedIn }) => {
-	console.log('from nav', loggedIn);
 	return (
 		<>
 			<nav
