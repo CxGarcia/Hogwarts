@@ -4,8 +4,6 @@ import header from './imgs/header.svg';
 import { Link } from '@reach/router';
 
 const Header = ({ loggedIn }) => {
-	console.log('from header', loggedIn);
-
 	return (
 		<>
 			<div className="header-container">

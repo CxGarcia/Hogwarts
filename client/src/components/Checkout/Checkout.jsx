@@ -50,16 +50,16 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const steps = ['Service address', 'Payment details', 'Review your request'];
+const steps = ['Service details', 'Payment details', 'Review your request'];
 
 function getStepContent(step) {
 	switch (step) {
 		case 0:
 			return <AddressForm />;
 		case 1:
-			return <PaymentForm />;
-		case 2:
 			return <Review />;
+		case 2:
+			return <PaymentForm />;
 		default:
 			throw new Error('Unknown step');
 	}
@@ -93,40 +93,25 @@ export default function Checkout() {
 						))}
 					</Stepper>
 					<React.Fragment>
-						{activeStep === steps.length ? (
-							<React.Fragment>
-								<Typography variant="h5" gutterBottom>
-									Thank you for your booking.
-								</Typography>
-								<Typography variant="subtitle1">
-									Your booking request confirmed. We have emailed your booking
-									confirmation, and will send you an update when your booking is
-									Done.
-								</Typography>
-								<Typography variant="h6" gutterBottom>
-									Now relax & Let the magic happen.
-								</Typography>
-							</React.Fragment>
-						) : (
-							<React.Fragment>
-								{getStepContent(activeStep)}
-								<div className={classes.buttons}>
-									{activeStep !== 0 && (
-										<Button onClick={handleBack} className={classes.button}>
-											Back
-										</Button>
-									)}
-									<Button
-										variant="contained"
-										color="primary"
-										onClick={handleNext}
-										className={classes.button}
-									>
-										{activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-									</Button>
-								</div>
-							</React.Fragment>
-						)}
+						{getStepContent(activeStep)}
+						<div className={classes.buttons}>
+							{activeStep !== 0 && (
+								<Button onClick={handleBack} className={classes.button}>
+									Back
+								</Button>
+							)}
+
+							{activeStep !== steps.length - 1 ? (
+								<Button
+									variant="contained"
+									color="primary"
+									onClick={handleNext}
+									className={classes.button}
+								>
+									Next
+								</Button>
+							) : null}
+						</div>
 					</React.Fragment>
 				</Paper>
 			</main>
