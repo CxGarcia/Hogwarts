@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const Customer = require('../model/customer-model');
+const { Customer } = require('../model');
 const jwt = require('jsonwebtoken');
 const { secretToken } = require('../config/db.config');
 
@@ -17,7 +17,10 @@ const registerUser = async (req, res) => {
 
     const token = jwt.sign({ id: customer.dataValues.id }, secretToken);
 
-    res.header("-x-auth-token", token).status(201).send(customer);
+    res.header("x-auth-token", token)
+      .header("access-control-expose-headers", "x-auth-token")
+      .status(201)
+      .send(customer);
 
 
   } catch (error) {

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Router } from '@reach/router';
+import jwt_decode from 'jwt-decode';
 import Home from './Home/Home';
 import Footer from './Common/Footer/Footer';
 import Nav from './Common/Nav/Nav';
@@ -12,6 +13,18 @@ import postOrder from './../Services/order';
 const App = () => {
 	const [loggedIn, setloggedIn] = useState(false);
 	const [admin, setAdmin] = useState(false);
+	const [user, setUser] = useState({});
+
+	useEffect(() => {
+		try {
+			const jwt = localStorage.getItem('token');
+			setUser(jwt_decode(jwt));
+			Object.keys(jwt).length !== 0 ? setloggedIn(true) : setloggedIn(false);
+			console.log(jwt_decode(jwt));
+		} catch (error) {}
+	}, []);
+
+	// useEffect(() => console.log(user), [user]);
 
 	const [order, setOrder] = useState({
 		serviceName: '',
@@ -47,7 +60,6 @@ const App = () => {
 		orderDate,
 		cost
 	) => {
-		console.log('I am Here in create order');
 		setOrder({
 			serviceName,
 			customerName,

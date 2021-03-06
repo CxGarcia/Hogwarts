@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './Login.css';
 import img from './imgs/undraw_Nature_fun_re_iney.svg';
-import { verifyCustomer } from '../../Services/customers';
+import { verifyCustomer } from '../../Services/authService';
 import { navigate } from '@reach/router';
 
 export default function Login({ isLoggedIn }) {
@@ -15,10 +15,14 @@ export default function Login({ isLoggedIn }) {
 		setPassword(password);
 
 		try {
-			const response = await verifyCustomer(email, password);
-			navigate('/');
+			const { data: jwt } = await verifyCustomer(email, password);
+			localStorage.setItem('token', jwt);
 			isLoggedIn(true);
+			navigate('/');
 		} catch (error) {
+			if (error.response && error.response.status === 400) {
+				alert('Invalid email or password');
+			}
 			console.log('error from login react', error);
 		}
 	};

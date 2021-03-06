@@ -29,9 +29,15 @@ export default function SignUp() {
 				password,
 				location
 			);
+			console.log(response);
+			localStorage.setItem('token', response.headers['x-auth-token']);
+
 			navigate('/');
 		} catch (error) {
-			console.log('ERROR');
+			if (error.response && error.response.status === 400) {
+				alert('User Already Exist');
+			}
+			console.log('ERROR', error);
 		}
 	};
 
