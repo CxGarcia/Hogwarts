@@ -1,11 +1,12 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from '@reach/router';
+import { verifyCustomer } from '../../Services/authService';
 import './Login.css';
 import img from './imgs/undraw_Nature_fun_re_iney.svg';
-import { verifyCustomer } from '../../Services/authService';
-import { navigate } from '@reach/router';
 
-export default function Login({ isLoggedIn }) {
+export default function Login() {
 	const { register, handleSubmit, errors } = useForm();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -16,9 +17,9 @@ export default function Login({ isLoggedIn }) {
 
 		try {
 			const { data: jwt } = await verifyCustomer(email, password);
+			console.log('jwt from login', jwt);
 			localStorage.setItem('token', jwt);
-			isLoggedIn(true);
-			navigate('/');
+			window.location = '/';
 		} catch (error) {
 			if (error.response && error.response.status === 400) {
 				alert('Invalid email or password');
@@ -72,6 +73,10 @@ export default function Login({ isLoggedIn }) {
 				<button type="submit" className="btn btn-primary btn-lg btn-block">
 					Sign in
 				</button>
+				<p className="forgot-password text-right">
+					<Link to="/signUp">Create account</Link>
+				</p>
+
 				<p className="forgot-password text-right">
 					Forgot password? It is my fault
 				</p>

@@ -2,7 +2,7 @@ import './Nav.css';
 import imgSrc from './imgs/Icon.png';
 import { Link } from '@reach/router';
 
-const Nav = ({ loggedIn }) => {
+const Nav = ({ user, logOut }) => {
 	return (
 		<>
 			<nav
@@ -38,18 +38,22 @@ const Nav = ({ loggedIn }) => {
 					</li>
 
 					<li className="nav-item">
-						{loggedIn ? (
+						{/* {Object.keys(user).length !== 0 ? (
 							<>
-								<span>Welcome back!!</span>
 								<Link to="/profile">
-									<button className="nav-btn"> Profile</button>
+									<button className="nav-btn">Welcome </button>
+								</Link>
+								<Link to="/logOut">
+									<button onClick={logOut} className=" nav-btn">
+										Log Out
+									</button>
 								</Link>
 							</>
-						) : (
-							<Link to="/login">
-								<button className="nav-btn">LOG IN</button>
-							</Link>
-						)}
+						) : ( */}
+						<Link to="/login">
+							<button className="nav-btn">LOG IN</button>
+						</Link>
+						{/* ) */}}
 					</li>
 				</ul>
 			</nav>

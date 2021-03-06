@@ -9,23 +9,27 @@ import Login from './LogIn/Login';
 import SignUp from './SignUp/SignUp';
 import Profile from './Profile/Profile';
 import postOrder from './../Services/order';
-
+import getCustomerById from './../Services/customers';
 const App = () => {
-	const [loggedIn, setloggedIn] = useState(false);
-	const [admin, setAdmin] = useState(false);
+	//getting the logged in user if exist
 	const [user, setUser] = useState({});
-
 	useEffect(() => {
-		try {
-			const jwt = localStorage.getItem('token');
-			setUser(jwt_decode(jwt));
-			Object.keys(jwt).length !== 0 ? setloggedIn(true) : setloggedIn(false);
-			console.log(jwt_decode(jwt));
-		} catch (error) {}
+		const jwt = localStorage.getItem('token');
+		console.log('JWT', jwt_decode(jwt).id);
+
+		setUser(getCustomerById());
 	}, []);
 
-	// useEffect(() => console.log(user), [user]);
+	// getuser;
+	console.log('user', user);
 
+	//logging out a user
+	const logOut = () => {
+		localStorage.removeItem('token');
+		window.location = '/';
+	};
+
+	//create new order
 	const [order, setOrder] = useState({
 		serviceName: '',
 		customerName: '',
@@ -37,17 +41,6 @@ const App = () => {
 		orderDate: '',
 		cost: '',
 	});
-
-	const isLoggedIn = (loggedIn) => {
-		if (loggedIn == true) {
-			setloggedIn(true);
-		}
-	};
-	const isAdmin = (admin) => {
-		if (admin == true) {
-			setAdmin(true);
-		}
-	};
 
 	const createOrder = async (
 		serviceName,
@@ -77,12 +70,17 @@ const App = () => {
 
 	return (
 		<>
-			<Nav loggedIn={loggedIn} />
+			<Nav user={user} logOut={logOut} />
 			<Router>
-				<Home path="/" loggedIn={loggedIn} />
-				<Login path="/login" isLoggedIn={isLoggedIn} isAdmin={isAdmin} />
+				<Home user={user} path="/" />
+				<Login path="/login" />
 				<SignUp path="/signUp" />
-				<Checkout path="/checkout" createOrder={createOrder} order={order} />
+				<Checkout
+					path="/checkout"
+					createOrder={createOrder}
+					order={order}
+					user={user}
+				/>
 				<Profile path="/profile" />
 			</Router>
 			<Footer />

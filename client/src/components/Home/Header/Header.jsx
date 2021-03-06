@@ -3,7 +3,7 @@ import headerImg from './imgs/1.png';
 import header from './imgs/header.svg';
 import { Link } from '@reach/router';
 
-const Header = ({ loggedIn }) => {
+const Header = ({ user }) => {
 	return (
 		<>
 			<div className="header-container">
@@ -14,11 +14,11 @@ const Header = ({ loggedIn }) => {
 						classical Latin literature from 45 BC, making it over 2000 years old
 					</p>
 
-					{loggedIn ? null : (
-						<Link to="/signUp">
-							<button>SIGN UP</button>
-						</Link>
-					)}
+					{/* {Object.keys(user).length !== 0 ? null : (
+					)} */}
+					<Link to="/signUp">
+						<button>SIGN UP</button>
+					</Link>
 				</div>
 				<div className="col-lg-6 header-img-box">
 					<img src={headerImg} alt="headerImg" />

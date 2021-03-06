@@ -20,14 +20,27 @@ const registerUser = async (req, res) => {
     res.header("x-auth-token", token)
       .header("access-control-expose-headers", "x-auth-token")
       .status(201)
-      .send(customer);
-
+      .send(token);
 
   } catch (error) {
-    res.status(400).send(error.errors[0].message);
+    res.status(400).send(error);
   }
 
 };
 
 
-module.exports = registerUser;
+
+const getCustomerById = async (req, res) => {
+
+  try {
+    const { id } = req.params;
+    const customer = await Customer.findAll({ where: { id } });
+    res.status(200).send(customer);
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
+module.exports = { registerUser, getCustomerById };

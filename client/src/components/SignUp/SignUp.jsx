@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from '@reach/router';
 import { useForm } from 'react-hook-form';
+import addCustomer from '../../Services/customers';
 import './SignUp.css';
 import img from './imgs/undraw_Relaxing_at_home_re_mror.svg';
-import { addCustomer } from '../../Services/customers';
-import { navigate } from '@reach/router';
 
 export default function SignUp() {
 	const { register, handleSubmit, errors } = useForm();
@@ -29,10 +28,9 @@ export default function SignUp() {
 				password,
 				location
 			);
-			console.log(response);
+			console.log('response from signup react ==>', response);
 			localStorage.setItem('token', response.headers['x-auth-token']);
-
-			navigate('/');
+			window.location = '/';
 		} catch (error) {
 			if (error.response && error.response.status === 400) {
 				alert('User Already Exist');

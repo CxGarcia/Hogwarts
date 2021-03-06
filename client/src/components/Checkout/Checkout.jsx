@@ -52,12 +52,16 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Service details', 'Payment details'];
 
-export default function Checkout({ createOrder, order }) {
+export default function Checkout({ createOrder, order, user }) {
 	function getStepContent(step) {
 		switch (step) {
 			case 0:
 				return (
-					<AddressForm handleNext={handleNext} createOrder={createOrder} />
+					<AddressForm
+						handleNext={handleNext}
+						createOrder={createOrder}
+						user={user}
+					/>
 				);
 			case 1:
 				return <Review order={order} />;

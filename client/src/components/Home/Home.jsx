@@ -4,10 +4,10 @@ import ServicesList from './ServicesList/ServicesList';
 import BookingSteps from './BookingSteps/BookingSteps';
 import Testimonial from './Testimonial/Testimonial';
 
-const Home = ({ loggedIn }) => {
+const Home = ({ user }) => {
 	return (
 		<>
-			<Header loggedIn={loggedIn} />
+			<Header user={user} />
 			<ServicesList />
 			<BookingSteps />
 			<Testimonial />

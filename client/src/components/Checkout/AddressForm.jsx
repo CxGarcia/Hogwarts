@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 
-export default function AddressForm({ createOrder, handleNext }) {
+export default function AddressForm({ createOrder, handleNext, user }) {
 	const useStyles = makeStyles((theme) => ({
 		button: {
 			marginTop: theme.spacing(4),
@@ -48,6 +48,7 @@ export default function AddressForm({ createOrder, handleNext }) {
 							required
 							id="name"
 							name="name"
+							// value={Object.keys(user).length !== 0 ? user.name : null}
 							label="Name"
 							fullWidth
 							autoComplete="given-name"
@@ -59,6 +60,7 @@ export default function AddressForm({ createOrder, handleNext }) {
 							required
 							id="email"
 							name="email"
+							// value={Object.keys(user).length !== 0 ? user.email : null}
 							label="Email"
 							fullWidth
 							autoComplete="email"
@@ -70,6 +72,7 @@ export default function AddressForm({ createOrder, handleNext }) {
 							required
 							id="mobile"
 							name="mobile"
+							// value={Object.keys(user).length !== 0 ? user.phone : null}
 							label="Mobile"
 							fullWidth
 							autoComplete="mobile"
@@ -104,6 +107,7 @@ export default function AddressForm({ createOrder, handleNext }) {
 							id="address"
 							name="address"
 							label="Address"
+							// value={Object.keys(user).length !== 0 ? user.location : null}
 							fullWidth
 							autoComplete="shipping address"
 							inputRef={register}
