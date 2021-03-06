@@ -91,7 +91,6 @@ export default function SignUp() {
 					<label>Password</label>
 					<input
 						name="password"
-						// value={password}
 						type="password"
 						className="form-control"
 						placeholder="Enter password"

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { navigate } from '@reach/router';
 
 const pay = async (amount, token) => {
 
@@ -9,6 +10,8 @@ const pay = async (amount, token) => {
     })
     .then((response) => {
       alert('Payment Success');
+      navigate('/');
+
       console.log(response);
 
     })
