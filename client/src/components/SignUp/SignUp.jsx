@@ -1,25 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from '@reach/router';
 import { useForm } from 'react-hook-form';
-import addCustomer from '../../Services/customers';
+import addCustomer from '../../Services/customersService';
 import './SignUp.css';
 import img from './imgs/undraw_Relaxing_at_home_re_mror.svg';
 
 export default function SignUp() {
 	const { register, handleSubmit, errors } = useForm();
 
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [phone, setPhone] = useState('');
-	const [location, setLocation] = useState('');
-	const [password, setPassword] = useState('');
-
 	const onSubmit = async ({ name, email, phone, location, password }) => {
-		setName(name);
-		setEmail(email);
-		setPhone(phone);
-		setLocation(location);
-		setPassword(password);
 		try {
 			const response = await addCustomer(
 				name,

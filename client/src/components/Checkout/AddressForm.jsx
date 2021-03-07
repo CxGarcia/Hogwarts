@@ -48,7 +48,7 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 							required
 							id="name"
 							name="name"
-							// value={Object.keys(user).length !== 0 ? user.name : null}
+							value={Object.keys(user).length !== 0 ? user.name : null}
 							label="Name"
 							fullWidth
 							autoComplete="given-name"
@@ -60,7 +60,7 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 							required
 							id="email"
 							name="email"
-							// value={Object.keys(user).length !== 0 ? user.email : null}
+							value={Object.keys(user).length !== 0 ? user.email : null}
 							label="Email"
 							fullWidth
 							autoComplete="email"
@@ -72,7 +72,7 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 							required
 							id="mobile"
 							name="mobile"
-							// value={Object.keys(user).length !== 0 ? user.phone : null}
+							value={Object.keys(user).length !== 0 ? user.phone : null}
 							label="Mobile"
 							fullWidth
 							autoComplete="mobile"
@@ -107,7 +107,7 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 							id="address"
 							name="address"
 							label="Address"
-							// value={Object.keys(user).length !== 0 ? user.location : null}
+							value={Object.keys(user).length !== 0 ? user.location : null}
 							fullWidth
 							autoComplete="shipping address"
 							inputRef={register}
