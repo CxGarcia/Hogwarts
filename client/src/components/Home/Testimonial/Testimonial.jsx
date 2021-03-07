@@ -1,7 +1,8 @@
 import './Testimonial.css';
 import manImg from './imgs/man.jpg';
 import ladyImg from './imgs/lady-img.jpg';
-const Testimonial = (props) => {
+
+const Testimonial = () => {
 	return (
 		<div className="testimonial-container">
 			<h1 className="testimonial-heading">
@@ -15,18 +16,18 @@ const Testimonial = (props) => {
 				<div className="carousel-inner">
 					<div className="carousel-item active">
 						<h3 className="testimonials-head">
-							Reasonable prices, professional & efficient. the plumber arrived
+							"Reasonable prices, professional & efficient. The plumber arrived
 							on time, a customer service called to follow up, and called again
-							the day after to assure that the issue was fixed
+							the day after to assure that the issue was fixed"
 						</h3>
 						<img src={manImg} alt="man-profile" className="slide-img" />
 						<em>Cris, Barcelona</em>{' '}
 					</div>
 					<div className="carousel-item">
 						<h3 className="testimonials-head">
-							I am so happy I discovered you guys! Very professional people and
-							very polite.Thank you Hogwarts for a job well done ,customer
-							service called to follow up
+							"I am so happy I discovered you guys! Very professional people and
+							very polite. Thank you Hogwarts for a job well done, Customer
+							service called to follow up"
 						</h3>
 						<img src={ladyImg} alt="lady-profile" className="slide-img" />
 						<em>Martha, Barcelona</em>
