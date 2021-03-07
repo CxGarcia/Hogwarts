@@ -38,10 +38,10 @@ const Nav = ({ user, logOut }) => {
 					</li>
 
 					<li className="nav-item">
-						{/* {Object.keys(user).length !== 0 ? (
+						{Object.keys(user).length !== 0 ? (
 							<>
 								<Link to="/profile">
-									<button className="nav-btn">Welcome </button>
+									<button className="nav-btn">Welcome {user.name}</button>
 								</Link>
 								<Link to="/logOut">
 									<button onClick={logOut} className=" nav-btn">
@@ -49,11 +49,11 @@ const Nav = ({ user, logOut }) => {
 									</button>
 								</Link>
 							</>
-						) : ( */}
-						<Link to="/login">
-							<button className="nav-btn">LOG IN</button>
-						</Link>
-						{/* ) */}}
+						) : (
+							<Link to="/login">
+								<button className="nav-btn">LOG IN</button>
+							</Link>
+						)}
 					</li>
 				</ul>
 			</nav>

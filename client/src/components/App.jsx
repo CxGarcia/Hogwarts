@@ -8,20 +8,20 @@ import Checkout from './Checkout/Checkout';
 import Login from './LogIn/Login';
 import SignUp from './SignUp/SignUp';
 import Profile from './Profile/Profile';
-import postOrder from './../Services/order';
-import getCustomerById from './../Services/customers';
+import postOrder from '../Services/orderService';
+const axios = require('axios');
+
 const App = () => {
 	//getting the logged in user if exist
 	const [user, setUser] = useState({});
 	useEffect(() => {
 		const jwt = localStorage.getItem('token');
-		console.log('JWT', jwt_decode(jwt).id);
-
-		setUser(getCustomerById());
+		if (jwt) {
+			axios
+				.get(`http://localhost:4000/customer/${jwt_decode(jwt).id}`)
+				.then((res) => setUser(res.data[0]));
+		}
 	}, []);
-
-	// getuser;
-	console.log('user', user);
 
 	//logging out a user
 	const logOut = () => {

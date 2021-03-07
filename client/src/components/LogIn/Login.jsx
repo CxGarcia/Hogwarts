@@ -8,16 +8,10 @@ import img from './imgs/undraw_Nature_fun_re_iney.svg';
 
 export default function Login() {
 	const { register, handleSubmit, errors } = useForm();
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
 
 	const onSubmit = async ({ email, password }) => {
-		setEmail(email);
-		setPassword(password);
-
 		try {
 			const { data: jwt } = await verifyCustomer(email, password);
-			console.log('jwt from login', jwt);
 			localStorage.setItem('token', jwt);
 			window.location = '/';
 		} catch (error) {

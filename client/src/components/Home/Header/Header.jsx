@@ -14,11 +14,11 @@ const Header = ({ user }) => {
 						classical Latin literature from 45 BC, making it over 2000 years old
 					</p>
 
-					{/* {Object.keys(user).length !== 0 ? null : (
-					)} */}
-					<Link to="/signUp">
-						<button>SIGN UP</button>
-					</Link>
+					{Object.keys(user).length !== 0 ? null : (
+						<Link to="/signUp">
+							<button>SIGN UP</button>
+						</Link>
+					)}
 				</div>
 				<div className="col-lg-6 header-img-box">
 					<img src={headerImg} alt="headerImg" />
