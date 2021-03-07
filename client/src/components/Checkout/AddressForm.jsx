@@ -20,8 +20,18 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => {
-		console.log(data);
 		const { name, email, mobile, address, ApartmentSize, rooms, date } = data;
+		let amount = 0;
+
+		if (ApartmentSize > 100) {
+			if (rooms == 2) amount = 50;
+			if (rooms == 3) amount = 60;
+			if (rooms == 4) amount = 70;
+			if (rooms >= 4) amount = 80;
+		} else {
+			amount = 40;
+		}
+
 		createOrder(
 			'Home Cleaning',
 			name,
@@ -31,7 +41,7 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 			ApartmentSize,
 			rooms,
 			date,
-			400
+			amount
 		);
 		handleNext();
 	};

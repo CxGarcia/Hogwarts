@@ -11,9 +11,6 @@ const pay = async (amount, token) => {
     .then((response) => {
       alert('Payment Success');
       navigate('/');
-
-      console.log(response);
-
     })
     .catch((error) => {
       console.log('Payment Error: ', error);
