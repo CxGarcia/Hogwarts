@@ -1,7 +1,6 @@
 const { Order } = require('../model');
 
 
-
 const addOrder = async (req, res) => {
 
   try {
@@ -26,5 +25,6 @@ const getAllOrders = async (req, res) => {
 };
 
 
-module.exports.addOrder = addOrder;
-module.exports.getAllOrders = getAllOrders;
+
+module.exports = { addOrder, getAllOrders };
+

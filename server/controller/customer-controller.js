@@ -36,8 +36,19 @@ const getCustomerById = async (req, res) => {
     res.status(200).send(customer);
   } catch (error) {
     console.log(error);
-    res.status(400).send("something wrong happen");
+    res.status(400).send(error);
   }
 };
 
-module.exports = { registerUser, getCustomerById };
+
+const getAllCustomers = async (req, res) => {
+  try {
+    const customer = await Customer.findAll();
+    res.status(200).send(customer);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+};
+
+module.exports = { registerUser, getCustomerById, getAllCustomers };
