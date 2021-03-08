@@ -24,7 +24,7 @@ const App = () => {
 		const jwt = localStorage.getItem('token');
 		if (jwt) {
 			axios(
-				`http://localhost:4000/customer/${jwt_decode(jwt).id}`
+				`http://localhost:4000/customer/${jwt_decode(jwt).id}`,
 			).then((res) => setUser(res.data[0]));
 		}
 		//getting a list of all orders to pass it to Dashboard
@@ -76,7 +76,7 @@ const App = () => {
 		apartmentSize,
 		roomsCount,
 		orderDate,
-		cost
+		cost,
 	) => {
 		setOrder({
 			serviceName,
@@ -93,21 +93,32 @@ const App = () => {
 		const created = await postOrder(cost, 'Visa', serviceName, 1, 1);
 	};
 
+	const Layout = (props) => (
+		<div>
+			<Nav user={user} logOut={logOut} />
+			{props.children}
+			<Footer />
+		</div>
+	);
+
 	return (
 		<>
 			<ToastContainer />
-			<Nav user={user} logOut={logOut} />
+
 			<Router>
-				<Home user={user} path="/" />
-				<Login path="/login" />
-				<SignUp path="/signUp" />
-				<Checkout
-					path="/checkout"
-					createOrder={createOrder}
-					order={order}
-					user={user}
-				/>
-				<Profile path="/profile" />
+				<Layout path="/">
+					<Home user={user} path="/" />
+					<Login path="/login" />
+					<SignUp path="/signUp" />
+					<Checkout
+						path="/checkout"
+						createOrder={createOrder}
+						order={order}
+						user={user}
+					/>
+					<Profile path="/profile" />
+				</Layout>
+
 				<Dashboard
 					path="/admin"
 					user={user}
@@ -116,7 +127,6 @@ const App = () => {
 					logOut={logOut}
 				/>
 			</Router>
-			<Footer />
 		</>
 	);
 };

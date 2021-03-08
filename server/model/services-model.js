@@ -20,11 +20,5 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: DataTypes.DATE,
   });
 
-
-  Service.associate = (model) => {
-    Service.hasMany(model.Order, { as: 'orders', constraints: false, allowNull: true, defaultValue: null });
-  };
-
-
   return Service;
 };
