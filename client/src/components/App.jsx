@@ -8,20 +8,43 @@ import Checkout from './Checkout/Checkout';
 import Login from './LogIn/Login';
 import SignUp from './SignUp/SignUp';
 import Profile from './Profile/Profile';
+import Dashboard from './AdminDashboard/Dashboard';
 import postOrder from '../Services/orderService';
 const axios = require('axios');
 
 const App = () => {
+	const [orders, setOrders] = useState([]);
+	let [totalCost, setTotalCost] = useState(0);
+
 	//getting the logged in user if exist
 	const [user, setUser] = useState({});
 	useEffect(() => {
 		const jwt = localStorage.getItem('token');
 		if (jwt) {
-			axios
-				.get(`http://localhost:4000/customer/${jwt_decode(jwt).id}`)
-				.then((res) => setUser(res.data[0]));
+			axios(
+				`http://localhost:4000/customer/${jwt_decode(jwt).id}`
+			).then((res) => setUser(res.data[0]));
 		}
+		//getting a list of all orders to pass it to Dashboard
+		axios('http://localhost:4000/orders').then((res) => {
+			console.log(res.data);
+			setOrders(res.data);
+		});
 	}, []);
+
+	useEffect(() => {
+		//getting the total cost of all orders to pass it to Dashboard
+
+		if (orders.length !== 0) {
+			let total = orders.reduce((total, order) => {
+				return total + +order.cost;
+			}, 0);
+			setTotalCost(total);
+		}
+	}, [orders]);
+
+	console.log(totalCost);
+	console.log('orders', orders);
 
 	//logging out a user
 	const logOut = () => {
@@ -82,6 +105,12 @@ const App = () => {
 					user={user}
 				/>
 				<Profile path="/profile" />
+				<Dashboard
+					path="/admin"
+					user={user}
+					orders={orders}
+					totalCost={totalCost}
+				/>
 			</Router>
 			<Footer />
 		</>

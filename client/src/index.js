@@ -4,7 +4,6 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import App from './components/App';
-// import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
