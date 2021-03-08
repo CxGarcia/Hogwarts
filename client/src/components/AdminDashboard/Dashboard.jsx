@@ -10,16 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems } from './listItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
+import DashboardHome from './Dashboard-Home/DashboardHome';
+import DashboardTechnician from './Dashboard-Technicians/DashboardTechnicians';
 
 const drawerWidth = 240;
 
@@ -40,13 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 		...theme.mixins.toolbar,
 	},
-	appBar: {
-		zIndex: theme.zIndex.drawer + 1,
-		transition: theme.transitions.create(['width', 'margin'], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-	},
+
 	appBarShift: {
 		marginLeft: drawerWidth,
 		width: `calc(100% - ${drawerWidth}px)`,
@@ -84,25 +74,6 @@ const useStyles = makeStyles((theme) => ({
 			width: theme.spacing(9),
 		},
 	},
-	appBarSpacer: theme.mixins.toolbar,
-	content: {
-		flexGrow: 1,
-		height: '100vh',
-		overflow: 'auto',
-	},
-	container: {
-		paddingTop: theme.spacing(4),
-		paddingBottom: theme.spacing(4),
-	},
-	paper: {
-		padding: theme.spacing(2),
-		display: 'flex',
-		overflow: 'auto',
-		flexDirection: 'column',
-	},
-	fixedHeight: {
-		height: 240,
-	},
 }));
 
 export default function Dashboard({ orders, totalCost, logOut }) {
@@ -114,7 +85,6 @@ export default function Dashboard({ orders, totalCost, logOut }) {
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
-	const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
 	return (
 		<div className={classes.root}>
@@ -168,31 +138,8 @@ export default function Dashboard({ orders, totalCost, logOut }) {
 				<List>{mainListItems}</List>
 				<Divider />
 			</Drawer>
-			<main className={classes.content}>
-				<div className={classes.appBarSpacer} />
-				<Container maxWidth="lg" className={classes.container}>
-					<Grid container spacing={3}>
-						{/* Chart */}
-						<Grid item xs={12} md={8} lg={9}>
-							<Paper className={fixedHeightPaper}>
-								<Chart orders={orders} />
-							</Paper>
-						</Grid>
-						{/* Recent Deposits */}
-						<Grid item xs={12} md={4} lg={3}>
-							<Paper className={fixedHeightPaper}>
-								<Deposits totalCost={totalCost} />
-							</Paper>
-						</Grid>
-						{/* Recent Orders */}
-						<Grid item xs={12}>
-							<Paper className={classes.paper}>
-								<Orders orders={orders} />
-							</Paper>
-						</Grid>
-					</Grid>
-				</Container>
-			</main>
+
+			<DashboardHome orders={orders} totalCost={totalCost} />
 		</div>
 	);
 }

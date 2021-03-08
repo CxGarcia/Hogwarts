@@ -20,5 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: DataTypes.DATE,
   });
 
+
+
   return Service;
 };
