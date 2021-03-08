@@ -1,5 +1,7 @@
-import './ServicesList.css';
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
 import { Link } from '@reach/router';
+import './ServicesList.css';
 
 const services = [
 	'Home Cleaning',
@@ -14,7 +16,13 @@ const services = [
 	'Tile & Ceramic Installation',
 ];
 
-const ServicesList = (props) => {
+const ServicesList = () => {
+	// const [servicess, setServicess] = useState({});
+	// useEffect(() => {
+	// 	axios('http://localhost:4000/services').then((data) => setServicess(data));
+	// }, []);
+	// console.log(servicess.data);
+
 	return (
 		<div id="SERVICES">
 			<h1 className="Services-Title">Our Services</h1>

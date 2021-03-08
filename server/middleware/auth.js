@@ -8,7 +8,6 @@ function auth (req, res, next) {
 
   try {
     const decoded = jwt.verify(token, secretToken);
-    console.log("DECODED FROM MIDDLEWARE", decoded);
     next();
   } catch (error) {
     res.status(400).send('Invalid token');
