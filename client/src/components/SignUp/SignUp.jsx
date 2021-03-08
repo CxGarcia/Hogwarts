@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import addCustomer from '../../Services/customersService';
 import './SignUp.css';
 import img from './imgs/undraw_Relaxing_at_home_re_mror.svg';
@@ -22,7 +23,7 @@ export default function SignUp() {
 			window.location = '/';
 		} catch (error) {
 			if (error.response && error.response.status === 400) {
-				alert('User Already Exist');
+				toast.error('User Already Exist');
 			}
 			console.log('ERROR', error);
 		}

@@ -17,23 +17,12 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-
-function Copyright() {
-	return (
-		<Typography variant="body2" color="textSecondary" align="center">
-			{'Copyright © '}
-			<Link color="inherit" href="https://github.com/AbdallahAltokhy">
-				Abdallah Altokhy
-			</Link>
-			{new Date().getFullYear()}
-		</Typography>
-	);
-}
 
 const drawerWidth = 240;
 
@@ -43,12 +32,16 @@ const useStyles = makeStyles((theme) => ({
 	},
 	toolbar: {
 		paddingRight: 24, // keep right padding when drawer closed
+		backgroundColor: '#5F4DEE',
+		height: '94px',
+		marginLeft: '-4px',
 	},
 	toolbarIcon: {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		padding: '0 8px',
+
 		...theme.mixins.toolbar,
 	},
 	appBar: {
@@ -116,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Dashboard({ orders, totalCost }) {
+export default function Dashboard({ orders, totalCost, logOut }) {
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(true);
 	const handleDrawerOpen = () => {
@@ -157,8 +150,8 @@ export default function Dashboard({ orders, totalCost }) {
 						Dashboard
 					</Typography>
 					<IconButton color="inherit">
-						<Badge badgeContent={4} color="secondary">
-							<AccountCircleIcon />
+						<Badge badgeContent="bye" onClick={logOut} color="secondary">
+							<ExitToAppIcon />
 						</Badge>
 					</IconButton>
 				</Toolbar>
@@ -186,7 +179,7 @@ export default function Dashboard({ orders, totalCost }) {
 						{/* Chart */}
 						<Grid item xs={12} md={8} lg={9}>
 							<Paper className={fixedHeightPaper}>
-								<Chart />
+								<Chart orders={orders} />
 							</Paper>
 						</Grid>
 						{/* Recent Deposits */}
@@ -202,9 +195,6 @@ export default function Dashboard({ orders, totalCost }) {
 							</Paper>
 						</Grid>
 					</Grid>
-					<Box pt={4}>
-						<Copyright />
-					</Box>
 				</Container>
 			</main>
 		</div>

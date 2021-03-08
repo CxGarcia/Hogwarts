@@ -24,9 +24,9 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Order.associate = (model) => {
-    Order.hasOne(model.Service);
-    Order.hasOne(model.Technician);
-    Order.hasOne(model.Customer);
+    Order.belongsTo(model.Service);
+    Order.belongsTo(model.Technician);
+    Order.belongsTo(model.Customer);
   };
 
   return Order;

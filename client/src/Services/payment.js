@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { navigate } from '@reach/router';
+import { toast } from 'react-toastify';
 
 const pay = async (amount, token) => {
 
@@ -9,12 +10,12 @@ const pay = async (amount, token) => {
       token
     })
     .then((response) => {
-      alert('Payment Success');
+      toast.success('Payment Success');
       navigate('/');
     })
     .catch((error) => {
       console.log('Payment Error: ', error);
-      alert('Payment Error');
+      toast.error('Payment Error');
     });
 
 };

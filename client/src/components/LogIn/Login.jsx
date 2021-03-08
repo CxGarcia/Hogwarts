@@ -5,6 +5,7 @@ import { Link } from '@reach/router';
 import { verifyCustomer } from '../../Services/authService';
 import './Login.css';
 import img from './imgs/undraw_Nature_fun_re_iney.svg';
+import { toast } from 'react-toastify';
 
 export default function Login() {
 	const { register, handleSubmit, errors } = useForm();
@@ -16,7 +17,9 @@ export default function Login() {
 			window.location = '/';
 		} catch (error) {
 			if (error.response && error.response.status === 400) {
-				alert('Invalid email or password');
+				toast.error('Invalid email or password', {
+					position: toast.POSITION.TOP_LEFT,
+				});
 			}
 			console.log('error from login react', error);
 		}

@@ -10,6 +10,8 @@ import SignUp from './SignUp/SignUp';
 import Profile from './Profile/Profile';
 import Dashboard from './AdminDashboard/Dashboard';
 import postOrder from '../Services/orderService';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const axios = require('axios');
 
 const App = () => {
@@ -93,6 +95,7 @@ const App = () => {
 
 	return (
 		<>
+			<ToastContainer />
 			<Nav user={user} logOut={logOut} />
 			<Router>
 				<Home user={user} path="/" />
@@ -110,6 +113,7 @@ const App = () => {
 					user={user}
 					orders={orders}
 					totalCost={totalCost}
+					logOut={logOut}
 				/>
 			</Router>
 			<Footer />
