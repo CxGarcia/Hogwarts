@@ -4,7 +4,7 @@ const postService = (name) => {
   return axios.post('http://localhost:4000/service', { name });
 };
 
-const getServices = async (name) => {
+const getServices = async () => {
   try {
 
     let servicesList;

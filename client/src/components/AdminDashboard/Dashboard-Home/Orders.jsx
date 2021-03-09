@@ -28,8 +28,8 @@ export default function Orders({ orders }) {
 				<TableHead>
 					<TableRow>
 						<TableCell>Date</TableCell>
-						<TableCell>Service</TableCell>
-						<TableCell>Ship To</TableCell>
+						<TableCell>Customer Name</TableCell>
+						<TableCell>Technician Name</TableCell>
 						<TableCell>Payment Method</TableCell>
 						<TableCell align="right">Sale Amount</TableCell>
 					</TableRow>
@@ -39,8 +39,12 @@ export default function Orders({ orders }) {
 						orders.map((order) => (
 							<TableRow key={order.id}>
 								<TableCell>{order.createdAt}</TableCell>
-								<TableCell>{order.CustomerId}</TableCell>
-								<TableCell>{order.TechnicianId}</TableCell>
+								<TableCell>
+									{order.Customer ? order.Customer.name : 1}
+								</TableCell>
+								<TableCell>
+									{order.Technician ? order.Technician.name : 1}
+								</TableCell>
 								<TableCell>{order.paymentMethod}</TableCell>
 								<TableCell align="right">{order.cost}</TableCell>
 							</TableRow>

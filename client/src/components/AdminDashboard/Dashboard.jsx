@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,8 +14,24 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems } from './listItems';
+import { useParams } from '@reach/router';
 import DashboardHome from './Dashboard-Home/DashboardHome';
 import DashboardTechnician from './Dashboard-Technicians/DashboardTechnicians';
+import DashboardCustomer from './Dashboard-Customers/DashboardCustomer';
+import DashboardService from './Dashboard Services/DashboardServices';
+import {
+	postService,
+	getServices,
+	updateServiceList,
+	deleteService,
+} from '../../Services/ServicesService';
+
+import { getCustomers } from '../../Services/customersService';
+import {
+	postTechnician,
+	getTechnicians,
+	deleteTechnician,
+} from '../../Services/techniciansService';
 
 const drawerWidth = 240;
 
@@ -77,6 +93,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard({ orders, totalCost, logOut }) {
+	const [services, setServices] = useState([]);
+	const [customers, setCustomers] = useState([]);
+	const [technicians, setTechnicians] = useState([]);
+
+	useEffect(() => {
+		getServices().then((res) => setServices(res));
+		getCustomers().then((res) => setCustomers(res));
+		getTechnicians().then((res) => setTechnicians(res));
+	}, []);
+
+	console.log(technicians);
+
+	const params = useParams();
+	const dashRouter = (params) => {
+		switch (params.dashboard) {
+			case 'home':
+				return <DashboardHome orders={orders} totalCost={totalCost} />;
+			case 'technician':
+				return <DashboardTechnician technicians={technicians} />;
+			case 'customers':
+				return <DashboardCustomer customers={customers} />;
+			case 'Services':
+				return <DashboardService services={services} />;
+			default:
+				return <DashboardHome orders={orders} totalCost={totalCost} />;
+		}
+	};
+
 	const classes = useStyles();
 	const [open, setOpen] = React.useState(true);
 	const handleDrawerOpen = () => {
@@ -138,8 +182,7 @@ export default function Dashboard({ orders, totalCost, logOut }) {
 				<List>{mainListItems}</List>
 				<Divider />
 			</Drawer>
-
-			<DashboardHome orders={orders} totalCost={totalCost} />
+			{dashRouter(params)}
 		</div>
 	);
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from '@reach/router';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import addCustomer from '../../Services/customersService';
+import { addCustomer } from '../../Services/customersService';
 import './SignUp.css';
 import img from './imgs/undraw_Relaxing_at_home_re_mror.svg';
 
@@ -16,7 +16,7 @@ export default function SignUp() {
 				phone,
 				email,
 				password,
-				location
+				location,
 			);
 			console.log('response from signup react ==>', response);
 			localStorage.setItem('token', response.headers['x-auth-token']);

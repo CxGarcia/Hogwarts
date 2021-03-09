@@ -32,9 +32,8 @@ const App = () => {
 		});
 	}, []);
 
+	//getting the total cost of all orders to pass it to Dashboard
 	useEffect(() => {
-		//getting the total cost of all orders to pass it to Dashboard
-
 		if (orders.length !== 0) {
 			let total = orders.reduce((total, order) => {
 				return total + +order.cost;
@@ -43,7 +42,6 @@ const App = () => {
 		}
 	}, [orders]);
 
-	console.log(orders);
 	//logging out a user
 	const logOut = () => {
 		localStorage.removeItem('token');
@@ -61,18 +59,17 @@ const App = () => {
 	return (
 		<>
 			<ToastContainer />
-
 			<Router>
 				<Layout path="/">
 					<Home user={user} path="/" />
-					<Login path="/login" />
+					<Login path="/login" user={user} />
+
 					<SignUp path="/signUp" />
 					<Checkout path="/checkout" user={user} />
 					<Profile path="/profile" />
 				</Layout>
-
 				<Dashboard
-					path="/admin"
+					path="/admin/:dashboard"
 					user={user}
 					orders={orders}
 					totalCost={totalCost}

@@ -6,15 +6,19 @@ import { verifyCustomer } from '../../Services/authService';
 import './Login.css';
 import img from './imgs/undraw_Nature_fun_re_iney.svg';
 import { toast } from 'react-toastify';
+import jwt_decode from 'jwt-decode';
 
-export default function Login() {
+export default function Login({ user }) {
 	const { register, handleSubmit, errors } = useForm();
 
 	const onSubmit = async ({ email, password }) => {
 		try {
 			const { data: jwt } = await verifyCustomer(email, password);
 			localStorage.setItem('token', jwt);
-			window.location = '/';
+
+			jwt_decode(jwt).id === 44
+				? (window.location = '/admin/home')
+				: (window.location = '/');
 		} catch (error) {
 			if (error.response && error.response.status === 400) {
 				toast.error('Invalid email or password', {
