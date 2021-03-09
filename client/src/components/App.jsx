@@ -9,7 +9,6 @@ import Login from './LogIn/Login';
 import SignUp from './SignUp/SignUp';
 import Profile from './Profile/Profile';
 import Dashboard from './AdminDashboard/Dashboard';
-import postOrder from '../Services/orderService';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const axios = require('axios');
@@ -29,7 +28,6 @@ const App = () => {
 		}
 		//getting a list of all orders to pass it to Dashboard
 		axios('http://localhost:4000/orders').then((res) => {
-			console.log(res.data);
 			setOrders(res.data);
 		});
 	}, []);
@@ -45,52 +43,11 @@ const App = () => {
 		}
 	}, [orders]);
 
-	console.log(totalCost);
-	console.log('orders', orders);
-
+	console.log(orders);
 	//logging out a user
 	const logOut = () => {
 		localStorage.removeItem('token');
 		window.location = '/';
-	};
-
-	//create new order
-	const [order, setOrder] = useState({
-		serviceName: '',
-		customerName: '',
-		customerEmail: '',
-		customerMobile: '',
-		customerAddress: '',
-		apartmentSize: '',
-		roomsCount: '',
-		orderDate: '',
-		cost: '',
-	});
-
-	const createOrder = async (
-		serviceName,
-		customerName,
-		customerEmail,
-		customerMobile,
-		customerAddress,
-		apartmentSize,
-		roomsCount,
-		orderDate,
-		cost,
-	) => {
-		setOrder({
-			serviceName,
-			customerName,
-			customerEmail,
-			customerMobile,
-			customerAddress,
-			apartmentSize,
-			roomsCount,
-			orderDate,
-			cost,
-		});
-
-		const created = await postOrder(cost, 'Visa', serviceName, 1, 1);
 	};
 
 	const Layout = (props) => (
@@ -110,12 +67,7 @@ const App = () => {
 					<Home user={user} path="/" />
 					<Login path="/login" />
 					<SignUp path="/signUp" />
-					<Checkout
-						path="/checkout"
-						createOrder={createOrder}
-						order={order}
-						user={user}
-					/>
+					<Checkout path="/checkout" user={user} />
 					<Profile path="/profile" />
 				</Layout>
 

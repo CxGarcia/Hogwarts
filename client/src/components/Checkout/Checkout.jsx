@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import Review from './Review';
 import Payment from './PaymentForm';
+import postOrder from '../../Services/orderService';
 
 const useStyles = makeStyles((theme) => ({
 	appBar: {
@@ -52,7 +53,57 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Service details', 'Payment details'];
 
-export default function Checkout({ createOrder, order, user }) {
+export default function Checkout({ user }) {
+	//create new order
+	const [order, setOrder] = useState({
+		serviceName: '',
+		customerName: '',
+		customerEmail: '',
+		customerMobile: '',
+		customerAddress: '',
+		apartmentSize: '',
+		roomsCount: '',
+		orderDate: '',
+		cost: '',
+	});
+
+	const createOrder = async (
+		serviceID,
+		customerName,
+		customerEmail,
+		customerMobile,
+		customerAddress,
+		apartmentSize,
+		roomsCount,
+		orderDate,
+		cost,
+	) => {
+		setOrder({
+			serviceID,
+			customerName,
+			customerEmail,
+			customerMobile,
+			customerAddress,
+			apartmentSize,
+			roomsCount,
+			orderDate,
+			cost,
+		});
+
+		await postOrder(cost, 'Card', 1, user.id, serviceID);
+	};
+
+	const [activeStep, setActiveStep] = React.useState(0);
+
+	const handleNext = () => {
+		console.log('I AM HANDLE NEXT');
+		setActiveStep(activeStep + 1);
+	};
+
+	const handleBack = () => {
+		setActiveStep(activeStep - 1);
+	};
+
 	function getStepContent(step) {
 		switch (step) {
 			case 0:
@@ -61,7 +112,7 @@ export default function Checkout({ createOrder, order, user }) {
 						handleNext={handleNext}
 						createOrder={createOrder}
 						user={user}
-					/>
+					></AddressForm>
 				);
 			case 1:
 				return <Review order={order} />;
@@ -71,19 +122,11 @@ export default function Checkout({ createOrder, order, user }) {
 	}
 
 	const classes = useStyles();
-	const [activeStep, setActiveStep] = React.useState(0);
-
-	const handleNext = () => {
-		setActiveStep(activeStep + 1);
-	};
-
-	const handleBack = () => {
-		setActiveStep(activeStep - 1);
-	};
 
 	return (
 		<>
 			<CssBaseline />
+			{console.log(activeStep)}
 			<main className={classes.layout}>
 				<Paper className={classes.paper}>
 					<Typography component="h1" variant="h4" align="center">
@@ -104,7 +147,6 @@ export default function Checkout({ createOrder, order, user }) {
 									Back
 								</Button>
 							)}
-
 							{activeStep === 1 ? <Payment order={order} /> : null}
 						</div>
 					</React.Fragment>

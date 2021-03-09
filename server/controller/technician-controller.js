@@ -16,7 +16,7 @@ const addTechnician = async (req, res) => {
 const getAllTechnicians = async (req, res) => {
 
   try {
-    const technician = await Technician.findAll();
+    const technician = await Technician.findAll({ include: { all: true, nested: true } });
     res.status(200).send(technician);
   } catch (error) {
     res.status(400).send(error.errors[0].message);

@@ -31,9 +31,8 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 		} else {
 			amount = 40;
 		}
-
 		createOrder(
-			'Home Cleaning',
+			2,
 			name,
 			email,
 			mobile,
@@ -41,7 +40,7 @@ export default function AddressForm({ createOrder, handleNext, user }) {
 			ApartmentSize,
 			rooms,
 			date,
-			amount
+			amount,
 		);
 		handleNext();
 	};

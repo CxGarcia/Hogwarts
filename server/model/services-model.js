@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true
     },
-
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -19,8 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   });
-
-
+  Service.associate = (model) => {
+    Service.hasMany(model.Order, { as: 'orders', constraints: false, allowNull: true, defaultValue: null });
+  };
 
   return Service;
 };

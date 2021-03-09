@@ -43,7 +43,7 @@ const getCustomerById = async (req, res) => {
 
 const getAllCustomers = async (req, res) => {
   try {
-    const customer = await Customer.findAll();
+    const customer = await Customer.findAll({ include: { all: true, nested: true } });
     res.status(200).send(customer);
   } catch (error) {
     console.log(error);
