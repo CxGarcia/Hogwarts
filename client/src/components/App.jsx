@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Router } from '@reach/router';
 import jwt_decode from 'jwt-decode';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Home from './Home/Home';
 import Footer from './Common/Footer/Footer';
 import Nav from './Common/Nav/Nav';
@@ -9,8 +11,6 @@ import Login from './LogIn/Login';
 import SignUp from './SignUp/SignUp';
 import Profile from './Profile/Profile';
 import Dashboard from './AdminDashboard/Dashboard';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 const axios = require('axios');
 
 const App = () => {
@@ -63,7 +63,6 @@ const App = () => {
 				<Layout path="/">
 					<Home user={user} path="/" />
 					<Login path="/login" user={user} />
-
 					<SignUp path="/signUp" />
 					<Checkout path="/checkout" user={user} />
 					<Profile path="/profile" />
