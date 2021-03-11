@@ -3,18 +3,14 @@
         "module": "commonjs",
         "esModuleInterop": true,
         "target": "es6",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "dist",
+        "outDir": "./dist",
         "baseUrl": ".",
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        }
+        "paths": { "*": [ "node_modules/*"] },
+        "strict": false,
     },
-    "include": [
-        "src/**/*"
-    ]
+    "include": ["src/**/*", "config", "src/router.js"],
+    "exclude": ["node_modules"]
 }

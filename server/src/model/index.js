@@ -2,14 +2,21 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const dbConfig = require('../config/db.config');
+const { development } = require('../config/config.js');
 const db = {};
 
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: 'localhost',
-  dialect: 'postgres',
-});
+//TODO - can't use env variables with the DB_NAME. Will look into it later
+const sequelize = new Sequelize(
+  development.database,
+  development.username,
+  development.password,
+  {
+    host: 'localhost',
+    dialect: 'postgres',
+  }
+);
 
+//TODO - refactor to new syntax suggested by Sequelize team
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
