@@ -11,7 +11,7 @@ export default function SignUp() {
 
 	const onSubmit = async ({ name, email, phone, location, password }) => {
 		try {
-			const response = await addCustomer(
+			const response: any = await addCustomer(
 				name,
 				phone,
 				email,
@@ -20,7 +20,7 @@ export default function SignUp() {
 			);
 			console.log('response from signup react ==>', response);
 			localStorage.setItem('token', response.headers['x-auth-token']);
-			window.location = '/';
+			window.location.href = '/';
 		} catch (error) {
 			if (error.response && error.response.status === 400) {
 				toast.error('User Already Exist');
