@@ -1,9 +1,11 @@
+import express from 'express';
+
 const bcrypt = require('bcrypt');
 const { Customer } = require('../model');
 const jwt = require('jsonwebtoken');
 const secretToken = process.env.SECRET_TOKEN;
 
-const registerUser = async (req, res) => {
+const registerUser = async (req: express.Request, res: express.Response) => {
   try {
     let { name, phone, email, password, location } = req.body;
 
@@ -18,6 +20,7 @@ const registerUser = async (req, res) => {
       password,
       location,
     });
+
     const token = jwt.sign({ id: customer.dataValues.id }, secretToken);
 
     res
@@ -30,7 +33,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-const getCustomerById = async (req, res) => {
+const getCustomerById = async (req: express.Request, res: express.Response) => {
   try {
     const { id } = req.params;
     const customer = await Customer.findAll({ where: { id } });
@@ -41,7 +44,7 @@ const getCustomerById = async (req, res) => {
   }
 };
 
-const getAllCustomers = async (req, res) => {
+const getAllCustomers = async (req: express.Request, res: express.Response) => {
   try {
     const customer = await Customer.findAll({
       include: { all: true, nested: true },
@@ -53,4 +56,4 @@ const getAllCustomers = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, getCustomerById, getAllCustomers };
+export { registerUser, getCustomerById, getAllCustomers };

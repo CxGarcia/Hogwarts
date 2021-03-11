@@ -1,26 +1,30 @@
-const express = require('express');
-const router = express.Router();
-const authMiddleware = require('./middleware/auth');
-const paymentApi = require('./controller/payment-controller');
-const auth = require('./controller/auth-controller');
-const { addOrder, getAllOrders } = require('./controller/order-controller');
-const {
+import express from 'express';
+
+import authMiddleware from './middleware/auth';
+import paymentApi from './controller/payment-controller';
+import auth from './controller/auth-controller';
+import { addOrder, getAllOrders } from './controller/order-controller';
+
+import {
   registerUser,
   getCustomerById,
   getAllCustomers,
-} = require('./controller/customer-controller');
-const {
+} from './controller/customer-controller';
+
+import {
   addTechnician,
   getAllTechnicians,
   deleteTechnician,
-} = require('./controller/technician-controller');
-const {
+} from './controller/technician-controller';
+
+import {
   addService,
   getAllServices,
   updateService,
   deleteService,
-} = require('./controller/services-controller');
+} from './controller/services-controller';
 
+const router = express.Router();
 //TODO: user authMiddleware when I want to manage the access for th routes
 //to give authority to access those routes to user with certain privilege
 //ex: router.post('/auth', authMiddleware, auth);
@@ -50,4 +54,4 @@ router.delete('/service/:id', deleteService);
 //payment
 router.post('/checkout', paymentApi);
 
-module.exports = router;
+export default router;

@@ -1,9 +1,11 @@
+import express from 'express';
+
 const bcrypt = require('bcrypt');
 const { Customer } = require('../model');
 const jwt = require('jsonwebtoken');
 const secretToken = process.env.SECRET_TOKEN;
 
-const auth = async (req, res) => {
+const auth = async (req: express.Request, res: express.Response) => {
   //validate if user exist or not
   let customer = await Customer.findAll({ where: { email: req.body.email } });
   if (!customer.length)
@@ -21,4 +23,4 @@ const auth = async (req, res) => {
   res.send(token);
 };
 
-module.exports = auth;
+export default auth;

@@ -11,6 +11,6 @@
         "paths": { "*": [ "node_modules/*"] },
         "strict": false,
     },
-    "include": ["src/**/*", "config", "src/router.js"],
+    "include": ["src/**/*", "config", "src/router.ts"],
     "exclude": ["node_modules"]
 }
