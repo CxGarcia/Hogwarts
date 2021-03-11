@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": "test123456",
+    "username": "cristobalschlaubitz",
+    "password": "21016056",
     "database": "hogwarts",
     "host": "localhost",
     "dialect": "mysql"
