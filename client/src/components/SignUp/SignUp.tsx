@@ -3,10 +3,18 @@ import { Link } from '@reach/router';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { addCustomer } from '../../Services/customersService';
+import {  RouteComponentProps } from "@reach/router"
 import './SignUp.css';
 import img from './imgs/undraw_Relaxing_at_home_re_mror.svg';
 
-export default function SignUp() {
+
+interface SignUpProps {
+	path: RouteComponentProps;
+}
+
+
+
+const SignUp: React.FC <SignUpProps> = () => {
 	const { register, handleSubmit, errors } = useForm();
 
 	const onSubmit = async ({ name, email, phone, location, password }) => {
@@ -103,3 +111,5 @@ export default function SignUp() {
 		</div>
 	);
 }
+
+export default SignUp
