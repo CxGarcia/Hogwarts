@@ -1,13 +1,15 @@
 import express from 'express';
-const { Service } = require('../model');
+// import Service from '../model/services-model';
+import { Service } from '../model/index';
 
 const addService = async (req: express.Request, res: express.Response) => {
   try {
     let { name } = req.body;
     const service = await Service.create({ name });
-    return res.status(201).send(service);
+    res.status(201).send(service);
   } catch (error) {
-    return res.status(400).send(error.errors[0].message);
+    console.log(error);
+    res.status(400).send(error);
   }
 };
 
