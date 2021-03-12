@@ -1,20 +1,23 @@
 import express from 'express';
-const { Technician } = require('../model');
+import { Technician } from '../model';
 
-const addTechnician = async (req: express.Request, res: express.Response) => {
+const addTechnician = async (
+  req: express.Request,
+  res: express.Response
+): Promise<void> => {
   try {
-    let { name, phone, email } = req.body;
+    const { name, phone, email } = req.body;
     const technician = await Technician.create({ name, phone, email });
-    return res.status(201).send(technician);
+    res.status(201).send(technician);
   } catch (error) {
-    return res.status(400).send(error.errors[0].message);
+    res.status(400).send(error.errors[0].message);
   }
 };
 
 const getAllTechnicians = async (
   req: express.Request,
   res: express.Response
-) => {
+): Promise<void> => {
   try {
     const technician = await Technician.findAll({
       include: { all: true, nested: true },
@@ -28,7 +31,7 @@ const getAllTechnicians = async (
 const deleteTechnician = async (
   req: express.Request,
   res: express.Response
-) => {
+): Promise<void> => {
   try {
     await Technician.destroy({
       where: {
