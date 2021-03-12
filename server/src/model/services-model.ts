@@ -1,33 +1,37 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '.';
+import { DataTypes, Model, Sequelize, BuildOptions } from 'sequelize';
 
 interface ServiceAttributes {
-  id: number;
   name: string;
+  id?: number;
 }
 
-//id is optional at creation time
-interface ServiceCreationAttributes extends Optional<ServiceAttributes, 'id'> {}
+interface ServiceModel extends Model<ServiceAttributes>, ServiceAttributes {}
 
-interface ServiceInstance
-  extends Model<ServiceAttributes, ServiceCreationAttributes>,
-    ServiceAttributes {
-  createdAt?: Date;
-  updatedAt?: Date;
+type ServiceStatic = typeof Model & {
+  new (values?: object, options?: BuildOptions): ServiceModel;
+};
+
+export function ServiceFactory(sequelize: Sequelize): ServiceStatic {
+  return <ServiceStatic>sequelize.define('services', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      allowNull: true,
+      type: DataTypes.TEXT,
+    },
+
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+  });
 }
-
-const Service = sequelize.define<ServiceInstance>('Service', {
-  id: {
-    allowNull: false,
-    autoIncrement: false,
-    primaryKey: true,
-    type: DataTypes.UUID,
-    unique: true,
-  },
-  name: {
-    allowNull: true,
-    type: DataTypes.TEXT,
-  },
-});
-
-export default Service;
