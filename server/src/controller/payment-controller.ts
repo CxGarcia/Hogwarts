@@ -8,21 +8,6 @@ const stripe = new Stripe(process.env.STRIPE_KEY, {
   typescript: true,
 });
 
-type TnestedCallbackFn = (
-  stripeErr: Stripe.StripeError,
-  stripeRes: Stripe.Charge
-) => any;
-
-
-function stripeChargeCallback (res: express.Response): TnestedCallbackFn{
-  return function (  stripeErr: Stripe.StripeAPIError, stripeRes: Stripe.Charge) {
-    if (stripeErr) {
-      res.status(500).send({ error: stripeErr });
-    } else {
-      res.status(200).send({ success: stripeRes });
-    }
-  }
-}
 const paymentApi = async (req: express.Request, res: express.Response) => {
   const body = {
     source: req.body.token.id,
@@ -30,8 +15,13 @@ const paymentApi = async (req: express.Request, res: express.Response) => {
     currency: 'usd',
   };
 
-  //TODO - research
-  await stripe.charges.create(body, stripeChargeCallback(res));
+  try {
+    const result = await stripe.charges.create(body);
+    res.status(200).send({ success: result })
+  } catch (error) {
+    res.status(500).send({ error: error })
+  }
+
 };
 
 export default paymentApi;
