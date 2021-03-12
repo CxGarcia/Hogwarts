@@ -1,11 +1,10 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-
 import * as dotenv from 'dotenv';
-
 dotenv.config();
 
+import { db } from './model';
 import router from './router';
 const app = express();
 
@@ -20,4 +19,19 @@ app.use(express.json());
 app.use(router);
 
 const port = process.env.PORT;
-app.listen(port, () => console.log(`App listening on port ${port} 🚀🕺🏻🎯🚀`));
+
+(async function bootstrap() {
+  try {
+    await db.authenticate();
+    await db.sync();
+    // eslint-disable-next-line
+    console.log('Connected to SQL database');
+
+    app.listen(port, () =>
+      console.log(`App listening on port ${port} 🚀🕺🏻🎯🚀`)
+    );
+  } catch (error) {
+    // eslint-disable-next-line
+    console.log(error);
+  }
+})();
