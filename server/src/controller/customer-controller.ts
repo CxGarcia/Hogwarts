@@ -1,13 +1,14 @@
 import express from 'express';
+import * as bcrypt from 'bcrypt';
+import { Customer } from '../model/index';
 
-const bcrypt = require('bcrypt');
-const { Customer } = require('../model');
 const jwt = require('jsonwebtoken');
 const secretToken = process.env.SECRET_TOKEN;
 
-const registerUser = async (req: express.Request, res: express.Response) => {
+const registerUser = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
-    let { name, phone, email, password, location } = req.body;
+    const { name, phone, email, location } = req.body;
+    let { password } = req.body;
 
     //hash the password
     const salt = await bcrypt.genSalt(10);
@@ -21,7 +22,7 @@ const registerUser = async (req: express.Request, res: express.Response) => {
       location,
     });
 
-    const token = jwt.sign({ id: customer.dataValues.id }, secretToken);
+    const token = jwt.sign({ id: customer.id }, secretToken);
 
     res
       .header('x-auth-token', token)
@@ -33,7 +34,7 @@ const registerUser = async (req: express.Request, res: express.Response) => {
   }
 };
 
-const getCustomerById = async (req: express.Request, res: express.Response) => {
+const getCustomerById = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const { id } = req.params;
     const customer = await Customer.findAll({ where: { id } });
@@ -44,7 +45,7 @@ const getCustomerById = async (req: express.Request, res: express.Response) => {
   }
 };
 
-const getAllCustomers = async (req: express.Request, res: express.Response) => {
+const getAllCustomers = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const customer = await Customer.findAll({
       include: { all: true, nested: true },
