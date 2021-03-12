@@ -1,8 +1,7 @@
+import express from 'express';
 const { Service } = require('../model');
 
-
-const addService = async (req, res) => {
-
+const addService = async (req: express.Request, res: express.Response) => {
   try {
     let { name } = req.body;
     const service = await Service.create({ name });
@@ -12,50 +11,44 @@ const addService = async (req, res) => {
   }
 };
 
-
-const getAllServices = async (req, res) => {
-
+const getAllServices = async (req: express.Request, res: express.Response) => {
   try {
     const service = await Service.findAll();
     res.status(200).send(service);
   } catch (error) {
     res.status(400).send(error.errors[0].message);
   }
-
 };
 
-
-const updateService = async (req, res) => {
+const updateService = async (req: express.Request, res: express.Response) => {
   try {
-    await Service.update({ name: req.body.name }, {
-      where: {
-        id: req.params.id
+    await Service.update(
+      { name: req.body.name },
+      {
+        where: {
+          id: req.params.id,
+        },
       }
-    });
+    );
 
     res.status(200).send('Service Updated');
   } catch (error) {
     res.status(400).send(error.errors[0].message);
   }
-
 };
 
-
-const deleteService = async (req, res) => {
+const deleteService = async (req: express.Request, res: express.Response) => {
   try {
     await Service.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     });
 
     res.status(200).send('Service Deleted');
   } catch (error) {
     res.status(400).send(error.errors[0].message);
   }
-
 };
 
-
-module.exports = { addService, getAllServices, updateService, deleteService };
-
+export { addService, getAllServices, updateService, deleteService };
