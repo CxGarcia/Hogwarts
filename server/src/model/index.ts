@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
 import { ServiceFactory } from './services-model';
 import { TechnicianFactory } from './technician-model';
+import { CustomerFactory } from './customer-model';
+import { OrderFactory } from './orders-model';
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -22,5 +24,7 @@ export const db = new Sequelize(
   }
 );
 
+export const Order = OrderFactory(db);
 export const Service = ServiceFactory(db);
+export const Customer = CustomerFactory(db);
 export const Technician = TechnicianFactory(db);

@@ -1,8 +1,9 @@
 import express from 'express';
-
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_KEY, {
+const STRIPE_KEY: string = process.env.STRIPE_KEY || '';
+
+const stripe = new Stripe(STRIPE_KEY, {
   apiVersion: '2020-08-27',
   typescript: true,
 });
