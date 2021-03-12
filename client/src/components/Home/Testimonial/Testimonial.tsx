@@ -1,6 +1,7 @@
 import './Testimonial.css';
-import manImg from './imgs/man.jpg';
-import ladyImg from './imgs/lady-img.jpg';
+
+const manImg: string = './imgs/man.jpg';
+const ladyImg: string = './imgs/lady-img.jpg';
 
 const Testimonial = () => {
 	return (
