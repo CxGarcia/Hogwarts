@@ -9,29 +9,27 @@ interface CustomerAttributes {
   location: string;
 }
 
-interface CustomerModel extends Model<CustomerAttributes>, CustomerAttributes { }
+interface CustomerModel extends Model<CustomerAttributes>, CustomerAttributes {}
 
 type CustomerStatic = typeof Model & {
-  new(values?: CustomerAttributes, options?: BuildOptions): CustomerModel;
+  new (values?: CustomerAttributes, options?: BuildOptions): CustomerModel;
 };
 
 export function CustomerFactory(sequelize: Sequelize): CustomerStatic {
-  return <CustomerStatic>sequelize.define('Customers', {
+  return <CustomerStatic>sequelize.define('customers', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-
     },
     phone: {
       type: DataTypes.STRING,
       allowNull: true,
-
     },
     email: {
       type: DataTypes.STRING,
@@ -39,27 +37,19 @@ export function CustomerFactory(sequelize: Sequelize): CustomerStatic {
       unique: true,
       validate: {
         isEmail: {
-          msg: "Must be a valid email address",
-        }
-      }
+          msg: 'Must be a valid email address',
+        },
+      },
     },
     password: {
       type: DataTypes.STRING(1234),
       allowNull: false,
-
     },
     location: {
       type: DataTypes.STRING,
       allowNull: true,
-
     },
-
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
   });
 }
-// TODO Association
-//   Customer.associate = (model) => {
-//     Customer.hasMany(model.Order, { as: 'orders', constraints: false, allowNull: true, defaultValue: null });
-//   };
-

@@ -3,7 +3,11 @@ import express from 'express';
 import authMiddleware from './middleware/auth';
 import paymentApi from './controller/payment-controller';
 import auth from './controller/auth-controller';
-import { addOrder, getAllOrders } from './controller/order-controller';
+import {
+  addOrder,
+  getAllOrders,
+  getOrdersByCustomerId,
+} from './controller/order-controller';
 
 import {
   registerUser,
@@ -39,6 +43,7 @@ router.get('/customers', getAllCustomers);
 //orders routes
 router.post('/addOrder', addOrder);
 router.get('/orders', getAllOrders);
+router.get('/orders/:id', getOrdersByCustomerId);
 
 //technicians routes
 router.post('/technician', addTechnician);
