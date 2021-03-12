@@ -2,9 +2,12 @@ import express from 'express';
 // import Service from '../model/services-model';
 import { Service } from '../model/index';
 
-const addService = async (req: express.Request, res: express.Response) => {
+const addService = async (
+  req: express.Request,
+  res: express.Response
+): Promise<void> => {
   try {
-    let { name } = req.body;
+    const { name } = req.body;
     const service = await Service.create({ name });
     res.status(201).send(service);
   } catch (error) {
@@ -13,7 +16,10 @@ const addService = async (req: express.Request, res: express.Response) => {
   }
 };
 
-const getAllServices = async (req: express.Request, res: express.Response) => {
+const getAllServices = async (
+  req: express.Request,
+  res: express.Response
+): Promise<void> => {
   try {
     const service = await Service.findAll();
     res.status(200).send(service);
@@ -22,7 +28,10 @@ const getAllServices = async (req: express.Request, res: express.Response) => {
   }
 };
 
-const updateService = async (req: express.Request, res: express.Response) => {
+const updateService = async (
+  req: express.Request,
+  res: express.Response
+): Promise<void> => {
   try {
     await Service.update(
       { name: req.body.name },
@@ -39,7 +48,10 @@ const updateService = async (req: express.Request, res: express.Response) => {
   }
 };
 
-const deleteService = async (req: express.Request, res: express.Response) => {
+const deleteService = async (
+  req: express.Request,
+  res: express.Response
+): Promise<void> => {
   try {
     await Service.destroy({
       where: {

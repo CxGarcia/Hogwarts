@@ -8,7 +8,7 @@ interface ServiceAttributes {
 interface ServiceModel extends Model<ServiceAttributes>, ServiceAttributes {}
 
 type ServiceStatic = typeof Model & {
-  new (values?: object, options?: BuildOptions): ServiceModel;
+  new (values?: ServiceAttributes, options?: BuildOptions): ServiceModel;
 };
 
 export function ServiceFactory(sequelize: Sequelize): ServiceStatic {

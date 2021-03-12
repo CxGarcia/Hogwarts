@@ -1,7 +1,10 @@
 import { Sequelize } from 'sequelize';
 import { ServiceFactory } from './services-model';
+import { TechnicianFactory } from './technician-model';
 
 const env = process.env.NODE_ENV || 'development';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const config = require(__dirname + '/../config/config.js')[env];
 
 export const db = new Sequelize(
@@ -20,3 +23,4 @@ export const db = new Sequelize(
 );
 
 export const Service = ServiceFactory(db);
+export const Technician = TechnicianFactory(db);
