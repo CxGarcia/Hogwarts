@@ -24,14 +24,13 @@ const port = process.env.PORT;
   try {
     await db.authenticate();
     await db.sync();
-    // eslint-disable-next-line
+
     console.log('Connected to SQL database');
 
     app.listen(port, () =>
       console.log(`App listening on port ${port} 🚀🕺🏻🎯🚀`)
     );
   } catch (error) {
-    // eslint-disable-next-line
     console.log(error);
   }
 })();
