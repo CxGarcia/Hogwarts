@@ -19,19 +19,10 @@ export function ServiceFactory(sequelize: Sequelize): ServiceStatic {
       primaryKey: true,
     },
     name: {
-      allowNull: true,
+      allowNull: false,
       type: DataTypes.TEXT,
     },
-
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
   });
 }

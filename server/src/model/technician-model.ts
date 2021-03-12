@@ -16,7 +16,7 @@ type TechnicianStatic = typeof Model & {
 };
 
 export function TechnicianFactory(sequelize: Sequelize): TechnicianStatic {
-  return <TechnicianStatic>sequelize.define('services', {
+  return <TechnicianStatic>sequelize.define('technicians', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,

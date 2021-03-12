@@ -24,7 +24,40 @@ export const db = new Sequelize(
   }
 );
 
-export const Order = OrderFactory(db);
-export const Service = ServiceFactory(db);
-export const Customer = CustomerFactory(db);
-export const Technician = TechnicianFactory(db);
+//Factories
+const Order = OrderFactory(db);
+const Service = ServiceFactory(db);
+const Customer = CustomerFactory(db);
+const Technician = TechnicianFactory(db);
+
+//Associations
+Order.belongsTo(Service, {
+  foreignKey: 'serviceId',
+});
+Order.belongsTo(Technician, {
+  foreignKey: 'technicianId',
+});
+
+Order.belongsTo(Customer, {
+  foreignKey: 'customerId',
+});
+
+Customer.hasMany(Order, {
+  sourceKey: 'id',
+  as: 'orders',
+  constraints: false,
+});
+
+Service.hasMany(Order, {
+  sourceKey: 'id',
+  as: 'orders',
+  constraints: false,
+});
+
+Technician.hasMany(Order, {
+  sourceKey: 'id',
+  as: 'orders',
+  constraints: false,
+});
+
+export { Order, Service, Customer, Technician };
