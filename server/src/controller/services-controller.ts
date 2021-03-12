@@ -1,9 +1,10 @@
 import express from 'express';
-const { Service } = require('../model');
+import Service from '../model/services-model';
 
 const addService = async (req: express.Request, res: express.Response) => {
   try {
-    let { name } = req.body;
+    let { name, id } = req.body;
+    console.log(req.body);
     const service = await Service.create({ name });
     return res.status(201).send(service);
   } catch (error) {
