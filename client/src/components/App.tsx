@@ -11,18 +11,17 @@ import Login from './LogIn/Login';
 import SignUp from './SignUp/SignUp';
 import Profile from './Profile/Profile';
 import Dashboard from './AdminDashboard/Dashboard';
+import UserInterface from "types/user"
+
 const axios = require('axios');
 
-interface User {
-  id?: number;
-}
-
 const App: React.FC<{}> = () => {
+
   const [orders, setOrders] = useState<any[]> ([]);
   let [totalCost, setTotalCost] = useState(0);
 
   //getting the logged in user if exist
-  const [user, setUser] = useState<User>({});
+  const [user, setUser] = useState<UserInterface>({});
   useEffect(() => {
     const jwt = localStorage.getItem('token');
     if (jwt) {

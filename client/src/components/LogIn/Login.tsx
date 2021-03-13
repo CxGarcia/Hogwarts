@@ -8,10 +8,10 @@ import img from './imgs/undraw_Nature_fun_re_iney.svg';
 import { toast } from 'react-toastify';
 import jwt_decode from 'jwt-decode';
 import {  RouteComponentProps } from "@reach/router"
-
+import UserInterface from "types/user"
 
 interface LoginProps {
-	user: object;
+	user: UserInterface;
 	path: RouteComponentProps;
 }
 

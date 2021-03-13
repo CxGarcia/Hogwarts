@@ -6,6 +6,7 @@ import Testimonial from './Testimonial/Testimonial';
 import {  RouteComponentProps } from "@reach/router"
 
 interface HomeProps {
+	//TODO - use User interface instead of object
 	user: object;
 	path: RouteComponentProps;
 }
