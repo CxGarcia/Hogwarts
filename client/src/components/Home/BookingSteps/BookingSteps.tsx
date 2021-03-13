@@ -1,7 +1,7 @@
 import './BookingSteps.css';
 import arrow from './imgs/arrow.svg';
 
-const BookingSteps = (props) => {
+const BookingSteps = () => {
 	return (
 		<div id="BOOK" className="booking-steps-container">
 			<h1 className="booking-steps-heading">FOUR EASY STEPS</h1>
