@@ -1,5 +1,5 @@
-import React, { useState, useEffect, FunctionComponent } from 'react';
-import { Router } from '@reach/router';
+import React, { useState, useEffect } from 'react';
+import { RouteComponentProps, Router } from '@reach/router';
 import jwt_decode from 'jwt-decode';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,13 +11,17 @@ import Login from './LogIn/Login';
 import SignUp from './SignUp/SignUp';
 import Profile from './Profile/Profile';
 import Dashboard from './AdminDashboard/Dashboard';
-import UserInterface from "types/user"
+import UserInterface from 'types/user';
+import { AxiosResponse } from 'axios';
 
 const axios = require('axios');
 
-const App: React.FC<{}> = () => {
+interface JWTToken {
+  id: string;
+}
 
-  const [orders, setOrders] = useState<any[]> ([]);
+const App: React.FC<{}> = () => {
+  const [orders, setOrders] = useState<any[]>([]);
   let [totalCost, setTotalCost] = useState(0);
 
   //getting the logged in user if exist
@@ -25,13 +29,13 @@ const App: React.FC<{}> = () => {
   useEffect(() => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
-      axios(
-        //TODO - get id from jwt_decode(jwt).id
-        `http://localhost:4000/customer/${jwt_decode(jwt)}`
-      ).then((res) => setUser(res.data[0]));
+      const { id } = jwt_decode<JWTToken>(jwt, {});
+      axios(`http://localhost:4000/customer/${id}`).then((res: AxiosResponse) =>
+        setUser(res.data[0])
+      );
     }
     //getting a list of all orders to pass it to Dashboard
-    axios('http://localhost:4000/orders').then((res) => {
+    axios('http://localhost:4000/orders').then((res: AxiosResponse) => {
       setOrders(res.data);
     });
   }, []);
@@ -47,15 +51,20 @@ const App: React.FC<{}> = () => {
   }, [orders]);
 
   //logging out a user
-  const logOut: React.MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLElement>): void => {
+  const logOut: React.MouseEventHandler<HTMLDivElement> = (
+    event: React.MouseEvent<HTMLElement>
+  ): void => {
     localStorage.removeItem('token');
     window.location.href = '/';
   };
 
-  const Layout = (props) => (
+  const Layout: React.FC<{
+    children: React.ReactChild | React.ReactChild[];
+    path: RouteComponentProps;
+  }> = ({ children }) => (
     <div>
       <Nav user={user} logOut={logOut} />
-      {props.children}
+      {children}
       <Footer />
     </div>
   );
@@ -82,6 +91,5 @@ const App: React.FC<{}> = () => {
     </>
   );
 };
-
 
 export default App;

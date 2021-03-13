@@ -1,3 +1,4 @@
+import OrdersInterface from "./orders";
 export default interface CustomerInterface {
   id?: number;
   name?: string;
@@ -5,4 +6,5 @@ export default interface CustomerInterface {
   email?: string;
   password?: string;
   location?: string;
+  orders?:  OrdersInterface[];
 }
