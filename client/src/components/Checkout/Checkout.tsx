@@ -11,8 +11,8 @@ import AddressForm from './AddressForm';
 import Review from './Review';
 import Payment from './PaymentForm';
 import postOrder from '../../Services/orderService';
-import {  RouteComponentProps } from "@reach/router"
-
+import { RouteComponentProps } from '@reach/router';
+import OrdersInterface from 'types/orders';
 
 //TODO - gather interface in a dedicated folder
 interface User {
@@ -21,10 +21,8 @@ interface User {
 
 interface CheckoutProps {
   user: User;
-	path: RouteComponentProps;
+  path: RouteComponentProps;
 }
-
-
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -67,44 +65,17 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Service details', 'Payment details'];
 
-const Checkout: React.FC <CheckoutProps> = ({ user }) => {
+const Checkout: React.FC<CheckoutProps> = ({ user }) => {
   //create new order
-  const [order, setOrder] = useState({
-    customerName: '',
-    customerEmail: '',
-    customerMobile: '',
-    customerAddress: '',
-    apartmentSize: '',
-    roomsCount: '',
-    orderDate: '',
-    cost: '',
-    serviceId: ''
-  });
+  const [order, setOrder] = useState<OrdersInterface | null>(null);
 
-  const createOrder = async (
-    serviceId,
-    customerName,
-    customerEmail,
-    customerMobile,
-    customerAddress,
-    apartmentSize,
-    roomsCount,
-    orderDate,
-    cost
-  ) => {
-    setOrder({
-      serviceId,
-      customerName,
-      customerEmail,
-      customerMobile,
-      customerAddress,
-      apartmentSize,
-      roomsCount,
-      orderDate,
-      cost,
-    });
+  const createOrder = async (order: OrdersInterface): Promise<void> => {
+    //TODO - check what db is returning to set order in client.
+    const { cost, serviceId } = order;
 
-    await postOrder(cost, 'Card', 1, user?.id, serviceId);
+    const _order = await postOrder(cost, 'Card', 1, user.id, serviceId);
+
+    setOrder(_order);
   };
 
   const [activeStep, setActiveStep] = React.useState(0);
@@ -118,7 +89,7 @@ const Checkout: React.FC <CheckoutProps> = ({ user }) => {
     setActiveStep(activeStep - 1);
   };
 
-  function getStepContent(step) {
+  function getStepContent(step: number) {
     switch (step) {
       case 0:
         return (
@@ -166,6 +137,6 @@ const Checkout: React.FC <CheckoutProps> = ({ user }) => {
       </main>
     </>
   );
-}
+};
 
 export default Checkout;
