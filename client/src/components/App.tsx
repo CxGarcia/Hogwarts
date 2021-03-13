@@ -48,7 +48,7 @@ const App: React.FC<{}> = () => {
   }, [orders]);
 
   //logging out a user
-  const logOut = (): void => {
+  const logOut: React.MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLElement>): void => {
     localStorage.removeItem('token');
     window.location.href = '/';
   };

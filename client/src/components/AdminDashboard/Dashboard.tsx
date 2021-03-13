@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, MouseEventHandler } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -41,7 +41,7 @@ const drawerWidth = 240;
 interface DashboardProps {
 	orders: any[];
 	totalCost: number;
-	logOut: Function;
+	logOut: MouseEventHandler<HTMLElement>;
 	path: RouteComponentProps;
 	user: object;
 }
@@ -171,10 +171,9 @@ const Dashboard: React.FC<DashboardProps> = ({ orders, totalCost, logOut }) => {
 						Dashboard
 					</Typography>
 					<IconButton color="inherit">
-						{//TODO
-						/* <Badge badgeContent="bye" onClick={logOut} color="secondary">
+						<Badge badgeContent="bye" onClick={logOut} color="secondary">
 							<ExitToAppIcon />
-						</Badge> */}
+						</Badge>
 					</IconButton>
 				</Toolbar>
 			</AppBar>
