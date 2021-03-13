@@ -2,8 +2,9 @@ import './Header.css';
 import headerImg from './imgs/1.png';
 import header from './imgs/header.svg';
 import { Link } from '@reach/router';
+import UserInterface from 'types/user'
 
-const Header = ({ user }) => {
+const Header = ({ user }: { user: UserInterface}) => {
 	return (
 		<>
 			<div className="header-container">
