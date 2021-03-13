@@ -14,6 +14,7 @@ import Dashboard from './AdminDashboard/Dashboard';
 import UserInterface from 'types/user';
 import { AxiosResponse } from 'axios';
 import axios from 'axios';
+import OrderInterface from 'types/orders';
 
 interface JWTToken {
   id: string;
@@ -21,7 +22,7 @@ interface JWTToken {
 
 //Record<string, never> = empty props
 const App: React.FC<Record<string, never>> = () => {
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<OrderInterface[]>([]);
   const [totalCost, setTotalCost] = useState(0);
 
   //getting the logged in user if exist
@@ -42,7 +43,7 @@ const App: React.FC<Record<string, never>> = () => {
   useEffect(() => {
     if (orders.length !== 0) {
       const total = orders.reduce((total, order) => {
-        return total + +order.cost;
+        return total + Number(order.cost);
       }, 0);
       setTotalCost(total);
     }
