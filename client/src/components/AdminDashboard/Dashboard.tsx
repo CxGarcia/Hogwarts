@@ -22,6 +22,7 @@ import { useParams, RouteComponentProps } from '@reach/router';
 import { getServices } from '../../Services/ServicesService';
 import { getCustomers } from '../../Services/customersService';
 import { getTechnicians } from '../../Services/techniciansService';
+import UserInterface from 'types/user';
 
 const drawerWidth = 240;
 
@@ -30,7 +31,7 @@ interface DashboardProps {
   totalCost: number;
   logOut: MouseEventHandler<HTMLElement>;
   path: RouteComponentProps;
-  user: object;
+  user: UserInterface;
 }
 
 const useStyles = makeStyles((theme) => ({
