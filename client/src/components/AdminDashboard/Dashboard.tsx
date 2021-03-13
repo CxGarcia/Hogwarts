@@ -14,29 +14,17 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { mainListItems } from './listItems';
-import { useParams } from '@reach/router';
 import DashboardHome from './Dashboard-Home/DashboardHome';
 import DashboardTechnician from './Dashboard-Technicians/DashboardTechnicians';
 import DashboardCustomer from './Dashboard-Customers/DashboardCustomer';
 import DashboardService from './Dashboard Services/DashboardServices';
-import {  RouteComponentProps } from "@reach/router"
-import {
-	postService,
-	getServices,
-	updateServiceList,
-	deleteService,
-} from '../../Services/ServicesService';
-
+import { useParams, RouteComponentProps } from "@reach/router"
+import { getServices } from '../../Services/ServicesService';
 import { getCustomers } from '../../Services/customersService';
-import {
-	postTechnician,
-	getTechnicians,
-	deleteTechnician,
-} from '../../Services/techniciansService';
+import { getTechnicians } from '../../Services/techniciansService';
+import CustomerInterface from 'types/customers';
 
 const drawerWidth = 240;
-
-
 
 interface DashboardProps {
 	orders: any[];
@@ -108,16 +96,17 @@ const Dashboard: React.FC<DashboardProps> = ({ orders, totalCost, logOut }) => {
 	const [customers, setCustomers] = useState([]);
 	const [technicians, setTechnicians] = useState([]);
 
-	useEffect(() => {
-		getServices().then((res) => setServices(res));
-		getCustomers().then((res) => setCustomers(res));
-		getTechnicians().then((res) => setTechnicians(res));
+  useEffect(() => {
+    // TODO: remove types any
+		getServices().then((res: any) => setServices(res));
+		getCustomers().then((value: any) => setCustomers(value));
+		getTechnicians().then((res: any) => setTechnicians(res));
 	}, []);
 
 	console.log(technicians);
 
 	const params = useParams();
-	const dashRouter = (params) => {
+	const dashRouter = (params: any) => {
 		switch (params.dashboard) {
 			case 'home':
 				return <DashboardHome orders={orders} totalCost={totalCost} />;
