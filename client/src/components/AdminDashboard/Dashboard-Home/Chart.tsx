@@ -1,11 +1,12 @@
-import React from 'react'
-import { useTheme } from '@material-ui/core/styles'
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts'
-import Title from '../Title'
+import React from 'react';
+import { useTheme } from '@material-ui/core/styles';
+import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import Title from '../Title';
+import OrderInterface from 'types/orders';
 
 // Generate Sales Data
-function createData(time, amount) {
-  return { time, amount }
+function createData(time: string, amount: number | undefined): { time: string; amount: number | undefined } {
+  return { time, amount };
 }
 
 const data = [
@@ -18,10 +19,10 @@ const data = [
   createData('18:00', 2400),
   createData('21:00', 2400),
   createData('24:00', undefined)
-]
-
-export default function Chart({ orders }) {
-  const theme = useTheme()
+];
+// TODO link chart to orders
+const Chart: React.FC<{ orders: OrderInterface[] }> = ({ orders }) => {
+  const theme = useTheme();
 
   return (
     <React.Fragment>
@@ -46,5 +47,7 @@ export default function Chart({ orders }) {
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
-  )
-}
+  );
+};
+
+export default Chart;

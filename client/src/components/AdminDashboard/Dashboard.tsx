@@ -1,4 +1,4 @@
-import React, { useState, useEffect, MouseEventHandler } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,21 +18,13 @@ import DashboardHome from './Dashboard-Home/DashboardHome';
 import DashboardTechnician from './Dashboard-Technicians/DashboardTechnicians';
 import DashboardCustomer from './Dashboard-Customers/DashboardCustomer';
 import DashboardService from './Dashboard Services/DashboardServices';
-import { useParams, RouteComponentProps } from '@reach/router';
+import { useParams } from '@reach/router';
 import { getServices } from '../../Services/ServicesService';
 import { getCustomers } from '../../Services/customersService';
 import { getTechnicians } from '../../Services/techniciansService';
-import UserInterface from 'types/user';
+import DashboardProps from 'types/dashboard';
 
 const drawerWidth = 240;
-
-interface DashboardProps {
-  orders: any[];
-  totalCost: number;
-  logOut: MouseEventHandler<HTMLElement>;
-  path: RouteComponentProps;
-  user: UserInterface;
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
