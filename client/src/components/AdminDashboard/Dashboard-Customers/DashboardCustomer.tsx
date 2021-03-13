@@ -1,9 +1,7 @@
-import React from 'react';
-import CustomerInterface from 'types/customers';
+import React from 'react'
+import CustomerInterface from 'types/customers'
 
-const DashboardCustomer: React.FC<{ customers: CustomerInterface[] }> = ({
-  customers,
-}) => {
+const DashboardCustomer: React.FC<{ customers: CustomerInterface[] }> = ({ customers }) => {
   return (
     <div className="container">
       <table className="table table-responsive table-dash">
@@ -25,7 +23,7 @@ const DashboardCustomer: React.FC<{ customers: CustomerInterface[] }> = ({
               <td>{customer.location}</td>
               <td>
                 {customer?.orders?.reduce((total, order) => {
-                  return total + Number(order?.cost);
+                  return total + Number(order?.cost)
                 }, 0)}
               </td>
             </tr>
@@ -33,7 +31,7 @@ const DashboardCustomer: React.FC<{ customers: CustomerInterface[] }> = ({
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default DashboardCustomer;
+export default DashboardCustomer
