@@ -1,38 +1,40 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { Link } from '@reach/router'
-import { verifyCustomer } from '../../Services/authService'
-import './Login.css'
-import img from './imgs/undraw_Nature_fun_re_iney.svg'
-import { toast } from 'react-toastify'
-import jwt_decode from 'jwt-decode'
-import { RouteComponentProps } from '@reach/router'
-import UserInterface from 'types/user'
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from '@reach/router';
+import { verifyCustomer } from '../../Services/authService';
+import './Login.css';
+import img from './imgs/undraw_Nature_fun_re_iney.svg';
+import { toast } from 'react-toastify';
+import jwt_decode from 'jwt-decode';
+import { RouteComponentProps } from '@reach/router';
+import UserInterface from 'types/user';
 
 interface LoginProps {
-  user: UserInterface
-  path: RouteComponentProps
+  user: UserInterface;
+  path: RouteComponentProps;
 }
 
 const Login: React.FC<LoginProps> = ({ user }) => {
-  const { register, handleSubmit, errors } = useForm()
+  const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit = async (event: React.FormEvent<HTMLInputElement>): Promise<void> => {
+    const { email, password } = event.target;
+
     try {
-      const { data: jwt } = await verifyCustomer(email, password)
-      localStorage.setItem('token', jwt)
+      const { data: jwt } = await verifyCustomer(email, password);
+      localStorage.setItem('token', jwt);
 
-      jwt_decode(jwt) === 44 ? (window.location.href = '/admin/home') : (window.location.href = '/')
+      jwt_decode(jwt) === 44 ? (window.location.href = '/admin/home') : (window.location.href = '/');
     } catch (error) {
       if (error.response && error.response.status === 400) {
         toast.error('Invalid email or password', {
           position: toast.POSITION.TOP_LEFT
-        })
+        });
       }
-      console.log('error from login react', error)
+      console.log('error from login react', error);
     }
-  }
+  };
 
   return (
     <div className="login-container">
@@ -71,7 +73,7 @@ const Login: React.FC<LoginProps> = ({ user }) => {
       </form>
       <img className="login-img" src={img} alt="" />
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

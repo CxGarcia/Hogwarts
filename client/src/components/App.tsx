@@ -13,16 +13,16 @@ import Profile from './Profile/Profile';
 import Dashboard from './AdminDashboard/Dashboard';
 import UserInterface from 'types/user';
 import { AxiosResponse } from 'axios';
-
-const axios = require('axios');
+import axios from 'axios';
 
 interface JWTToken {
   id: string;
 }
 
-const App: React.FC<{}> = () => {
+//Record<string, never> = empty props
+const App: React.FC<Record<string, never>> = () => {
   const [orders, setOrders] = useState<any[]>([]);
-  let [totalCost, setTotalCost] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
 
   //getting the logged in user if exist
   const [user, setUser] = useState<UserInterface>({});
@@ -30,9 +30,7 @@ const App: React.FC<{}> = () => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
       const { id } = jwt_decode<JWTToken>(jwt, {});
-      axios(`http://localhost:4000/customer/${id}`).then((res: AxiosResponse) =>
-        setUser(res.data[0])
-      );
+      axios(`http://localhost:4000/customer/${id}`).then((res: AxiosResponse) => setUser(res.data[0]));
     }
     //getting a list of all orders to pass it to Dashboard
     axios('http://localhost:4000/orders').then((res: AxiosResponse) => {
@@ -43,7 +41,7 @@ const App: React.FC<{}> = () => {
   //getting the total cost of all orders to pass it to Dashboard
   useEffect(() => {
     if (orders.length !== 0) {
-      let total = orders.reduce((total, order) => {
+      const total = orders.reduce((total, order) => {
         return total + +order.cost;
       }, 0);
       setTotalCost(total);
@@ -51,9 +49,7 @@ const App: React.FC<{}> = () => {
   }, [orders]);
 
   //logging out a user
-  const logOut: React.MouseEventHandler<HTMLDivElement> = (
-    event: React.MouseEvent<HTMLElement>
-  ): void => {
+  const logOut: React.MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLElement>): void => {
     localStorage.removeItem('token');
     window.location.href = '/';
   };
@@ -80,13 +76,7 @@ const App: React.FC<{}> = () => {
           <Checkout path="/checkout" user={user} />
           <Profile path="/profile" />
         </Layout>
-        <Dashboard
-          path="/admin/:dashboard"
-          user={user}
-          orders={orders}
-          totalCost={totalCost}
-          logOut={logOut}
-        />
+        <Dashboard path="/admin/:dashboard" user={user} orders={orders} totalCost={totalCost} logOut={logOut} />
       </Router>
     </>
   );
