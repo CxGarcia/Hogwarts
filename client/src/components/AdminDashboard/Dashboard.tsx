@@ -19,6 +19,7 @@ import DashboardHome from './Dashboard-Home/DashboardHome';
 import DashboardTechnician from './Dashboard-Technicians/DashboardTechnicians';
 import DashboardCustomer from './Dashboard-Customers/DashboardCustomer';
 import DashboardService from './Dashboard Services/DashboardServices';
+import {  RouteComponentProps } from "@reach/router"
 import {
 	postService,
 	getServices,
@@ -34,6 +35,16 @@ import {
 } from '../../Services/techniciansService';
 
 const drawerWidth = 240;
+
+
+
+interface DashboardProps {
+	orders: any[];
+	totalCost: number;
+	logOut: Function;
+	path: RouteComponentProps;
+	user: object;
+}
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -92,7 +103,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Dashboard({ orders, totalCost, logOut }) {
+const Dashboard: React.FC<DashboardProps> = ({ orders, totalCost, logOut }) => {
 	const [services, setServices] = useState([]);
 	const [customers, setCustomers] = useState([]);
 	const [technicians, setTechnicians] = useState([]);
@@ -135,7 +146,7 @@ export default function Dashboard({ orders, totalCost, logOut }) {
 			<CssBaseline />
 			<AppBar
 				position="absolute"
-				className={clsx(classes.appBar, open && classes.appBarShift)}
+				//TODO className={clsx(classes.appBar, open && classes.appBarShift)}
 			>
 				<Toolbar className={classes.toolbar}>
 					<IconButton
@@ -160,9 +171,10 @@ export default function Dashboard({ orders, totalCost, logOut }) {
 						Dashboard
 					</Typography>
 					<IconButton color="inherit">
-						<Badge badgeContent="bye" onClick={logOut} color="secondary">
+						{//TODO
+						/* <Badge badgeContent="bye" onClick={logOut} color="secondary">
 							<ExitToAppIcon />
-						</Badge>
+						</Badge> */}
 					</IconButton>
 				</Toolbar>
 			</AppBar>
@@ -186,3 +198,5 @@ export default function Dashboard({ orders, totalCost, logOut }) {
 		</div>
 	);
 }
+
+export default Dashboard

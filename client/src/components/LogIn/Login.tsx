@@ -7,8 +7,16 @@ import './Login.css';
 import img from './imgs/undraw_Nature_fun_re_iney.svg';
 import { toast } from 'react-toastify';
 import jwt_decode from 'jwt-decode';
+import {  RouteComponentProps } from "@reach/router"
 
-export default function Login({ user }) {
+
+interface LoginProps {
+	user: object;
+	path: RouteComponentProps;
+}
+
+
+const Login: React.FC<LoginProps> = ({ user }) => {
 	const { register, handleSubmit, errors } = useForm();
 
 	const onSubmit = async ({ email, password }) => {
@@ -16,9 +24,9 @@ export default function Login({ user }) {
 			const { data: jwt } = await verifyCustomer(email, password);
 			localStorage.setItem('token', jwt);
 
-			jwt_decode(jwt).id === 44
-				? (window.location = '/admin/home')
-				: (window.location = '/');
+			jwt_decode(jwt) === 44
+				? (window.location.href = '/admin/home')
+				: (window.location.href = '/');
 		} catch (error) {
 			if (error.response && error.response.status === 400) {
 				toast.error('Invalid email or password', {
@@ -86,3 +94,5 @@ export default function Login({ user }) {
 		</div>
 	);
 }
+
+export default Login;

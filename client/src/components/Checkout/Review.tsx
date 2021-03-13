@@ -26,7 +26,7 @@ export default function Review({ order }) {
 
 	const classes = useStyles();
 	return (
-		<React.Fragment>
+		<>
 			<Typography variant="h6" gutterBottom>
 				Order summary
 			</Typography>
@@ -55,6 +55,6 @@ export default function Review({ order }) {
 					<Typography gutterBottom>{order.customerAddress}</Typography>
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</>
 	);
 }
