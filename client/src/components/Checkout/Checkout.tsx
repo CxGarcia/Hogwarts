@@ -70,6 +70,7 @@ const Checkout: React.FC<CheckoutProps> = ({ user }) => {
   const [order, setOrder] = useState<OrdersInterface | null>(null);
 
   const createOrder = async (order: OrdersInterface): Promise<void> => {
+    //TODO - check what db is returning to set order in client.
     const { cost, serviceId } = order;
 
     const _order = await postOrder(cost, 'Card', 1, user.id, serviceId);
