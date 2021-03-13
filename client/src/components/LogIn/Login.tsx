@@ -18,8 +18,8 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ user }) => {
   const { register, handleSubmit, errors } = useForm();
 
-  const onSubmit = async (event: React.FormEvent<HTMLInputElement>): Promise<void> => {
-    const { email, password } = event.target;
+  const handleForm = async (formValues: { email: string; password: string }): Promise<void> => {
+    const { email, password } = formValues;
 
     try {
       const { data: jwt } = await verifyCustomer(email, password);
@@ -38,7 +38,7 @@ const Login: React.FC<LoginProps> = ({ user }) => {
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="login-form" onSubmit={handleSubmit(handleForm)}>
         <h3>Log in</h3>
 
         <div className="form-group">
