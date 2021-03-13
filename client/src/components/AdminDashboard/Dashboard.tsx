@@ -22,7 +22,6 @@ import { useParams, RouteComponentProps } from "@reach/router"
 import { getServices } from '../../Services/ServicesService';
 import { getCustomers } from '../../Services/customersService';
 import { getTechnicians } from '../../Services/techniciansService';
-import CustomerInterface from 'types/customers';
 
 const drawerWidth = 240;
 
