@@ -1,8 +1,12 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const postOrder = (cost, paymentMethod, TechnicianId, CustomerId, serviceID) => {
   return axios.post('http://localhost:4000/addOrder', {
-    cost, paymentMethod, TechnicianId, CustomerId, serviceID
+    cost,
+    paymentMethod,
+    TechnicianId,
+    CustomerId,
+    serviceID
   });
 };
 
