@@ -1,12 +1,13 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
+import OrderInterface from 'types/orders';
 
 const postOrder = (
-  cost: number,
+  cost: number | undefined,
   paymentMethod: string,
-  technicianId: number,
-  customerId: number,
-  serviceId: number
-): Promise<AxiosResponse> => {
+  technicianId: number | undefined,
+  customerId: number | undefined,
+  serviceId: number | undefined
+): Promise<OrderInterface> => {
   return axios.post('http://localhost:4000/addOrder', {
     cost,
     paymentMethod,

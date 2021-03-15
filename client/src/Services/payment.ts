@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { navigate } from '@reach/router';
 import { toast } from 'react-toastify';
+import { Token } from 'react-stripe-checkout';
 
-const pay = async (amount: number, token: string): Promise<void> => {
+const pay = async (amount: number, token: Token): Promise<void> => {
   axios
     .post('http://localhost:4000/checkout', {
       amount,

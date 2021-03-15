@@ -6,20 +6,27 @@ import { useForm } from 'react-hook-form';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
+import UserInterface from 'types/user';
+import OrderInterface from 'types/orders';
 
-export default function AddressForm({ createOrder, handleNext, user }) {
+type CreateOrder = (order: OrderInterface) => Promise<void>;
+const AddressForm: React.FC<{ createOrder: CreateOrder; handleNext: () => void; user: UserInterface }> = ({
+  createOrder,
+  handleNext,
+  user
+}) => {
   const useStyles = makeStyles((theme) => ({
     button: {
       marginTop: theme.spacing(4),
       marginLeft: theme.spacing(50),
-      marginBottom: theme.spacing(2),
-    },
+      marginBottom: theme.spacing(2)
+    }
   }));
 
   const classes = useStyles();
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     const { name, email, mobile, address, ApartmentSize, rooms, date } = data;
     let amount = 0;
 
@@ -31,17 +38,17 @@ export default function AddressForm({ createOrder, handleNext, user }) {
     } else {
       amount = 40;
     }
-    createOrder(
-      2,
-      name,
-      email,
-      mobile,
-      address,
-      ApartmentSize,
-      rooms,
-      date,
-      amount
-    );
+
+    createOrder({
+      customerName: name,
+      customerEmail: email,
+      customerMobile: mobile,
+      customerAddress: address,
+      apartmentSize: ApartmentSize,
+      roomsCount: rooms,
+      orderDate: date,
+      cost: amount
+    });
     handleNext();
   };
 
@@ -100,15 +107,7 @@ export default function AddressForm({ createOrder, handleNext, user }) {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="rooms"
-              name="rooms"
-              label="Number of rooms"
-              fullWidth
-              autoComplete="rooms"
-              inputRef={register}
-            />
+            <TextField required id="rooms" name="rooms" label="Number of rooms" fullWidth autoComplete="rooms" inputRef={register} />
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -130,31 +129,21 @@ export default function AddressForm({ createOrder, handleNext, user }) {
               type="datetime-local"
               fullWidth
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
               inputRef={register}
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              id="info"
-              name="info"
-              label="Other Information"
-              fullWidth
-              autoComplete="info"
-              inputRef={register}
-            />
+            <TextField id="info" name="info" label="Other Information" fullWidth autoComplete="info" inputRef={register} />
           </Grid>
-          <Button
-            variant="contained"
-            color="primary"
-            type="submit"
-            className={classes.button}
-          >
+          <Button variant="contained" color="primary" type="submit" className={classes.button}>
             Confirm Order
           </Button>
         </Grid>
       </form>
     </React.Fragment>
   );
-}
+};
+
+export default AddressForm;

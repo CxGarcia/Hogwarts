@@ -12,7 +12,7 @@ import Review from './Review';
 import Payment from './PaymentForm';
 import postOrder from '../../Services/orderService';
 import { RouteComponentProps } from '@reach/router';
-import OrdersInterface from 'types/orders';
+import OrderInterface from 'types/orders';
 
 //TODO - gather interface in a dedicated folder
 interface User {
@@ -26,7 +26,7 @@ interface CheckoutProps {
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: 'relative',
+    position: 'relative'
   },
   layout: {
     width: 'auto',
@@ -37,8 +37,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
       marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+      marginRight: 'auto'
+    }
   },
   paper: {
     marginTop: theme.spacing(3),
@@ -47,29 +47,29 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
-    },
+      padding: theme.spacing(3)
+    }
   },
   stepper: {
-    padding: theme.spacing(3, 0, 5),
+    padding: theme.spacing(3, 0, 5)
   },
   buttons: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   button: {
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
+    marginLeft: theme.spacing(1)
+  }
 }));
 
 const steps = ['Service details', 'Payment details'];
 
 const Checkout: React.FC<CheckoutProps> = ({ user }) => {
   //create new order
-  const [order, setOrder] = useState<OrdersInterface | null>(null);
+  const [order, setOrder] = useState<OrderInterface | null>(null);
 
-  const createOrder = async (order: OrdersInterface): Promise<void> => {
+  const createOrder = async (order: OrderInterface): Promise<void> => {
     //TODO - check what db is returning to set order in client.
     const { cost, serviceId } = order;
 
@@ -92,13 +92,7 @@ const Checkout: React.FC<CheckoutProps> = ({ user }) => {
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return (
-          <AddressForm
-            handleNext={handleNext}
-            createOrder={createOrder}
-            user={user}
-          ></AddressForm>
-        );
+        return <AddressForm handleNext={handleNext} createOrder={createOrder} user={user}></AddressForm>;
       case 1:
         return <Review order={order} />;
       default:
