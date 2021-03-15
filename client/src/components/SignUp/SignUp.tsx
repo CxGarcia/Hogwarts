@@ -14,19 +14,20 @@ interface SignUpProps {
 }
 
 const SignUp: React.FC<SignUpProps> = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { handleSubmit, register, errors } = useForm();
 
   const onSubmit = async ({ name, email, phone, location, password }: CustomerInterface) => {
     try {
-      const response: any = await addCustomer(name, phone, email, password, location);
-      console.log('response from signup react ==>', response);
-      localStorage.setItem('token', response.headers['x-auth-token']);
-      window.location.href = '/';
+      console.log('hiya');
+      // const response: any = await addCustomer(name, phone, email, password, location);
+      // console.log('response from signup react ==>', response);
+      // localStorage.setItem('token', response.headers['x-auth-token']);
+      // window.location.href = '/';
     } catch (error) {
-      if (error.response && error.response.status === 400) {
-        toast.error('User Already Exist');
-      }
-      console.log('ERROR', error);
+      // if (error.response && error.response.status === 400) {
+      //   toast.error('User Already Exist');
+      // }
+      // console.log('ERROR', error);
     }
   };
 
@@ -37,30 +38,44 @@ const SignUp: React.FC<SignUpProps> = () => {
       <form className="registration-form" onSubmit={handleSubmit(onSubmit)}>
         <h3>Register</h3>
         <div className="form-group">
-          <label>Name</label>
-          <input name="name" type="text" className="form-control" placeholder="Name" ref={register({ required: true })} />
+          <label htmlFor="name">Name</label>
+          <input id="name" name="name" type="text" className="form-control" placeholder="Name" ref={register({ required: true })} />
           {errors.name && <span>This field is required</span>}
         </div>
 
         <div className="form-group">
-          <label>Email</label>
-          <input name="email" type="email" className="form-control" placeholder="Enter email" ref={register({ required: true })} />
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            className="form-control"
+            placeholder="Enter email"
+            ref={register({ required: true })}
+          />
           {errors.email && <span>This field is required</span>}
         </div>
 
         <div className="form-group">
-          <label>Phone</label>
-          <input name="phone" type="text" className="form-control" placeholder="Phone" ref={register()} />
+          <label htmlFor="phone">Phone</label>
+          <input id="phone" name="phone" type="text" className="form-control" placeholder="Phone" ref={register()} />
         </div>
 
         <div className="form-group">
-          <label>Location</label>
-          <input name="location" type="text" className="form-control" placeholder="location" ref={register()} />
+          <label htmlFor="location">Location</label>
+          <input id="location" name="location" type="text" className="form-control" placeholder="location" ref={register()} />
         </div>
 
         <div className="form-group">
-          <label>Password</label>
-          <input name="password" type="password" className="form-control" placeholder="Enter password" ref={register({ required: true })} />
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            className="form-control"
+            placeholder="Enter password"
+            ref={register({ required: true })}
+          />
           {errors.password && <span>This field is required</span>}
         </div>
 
