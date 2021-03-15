@@ -6,15 +6,14 @@
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "dist",
+        "outDir": "./dist",
         "baseUrl": ".",
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        }
+        "paths": { "*": [ "node_modules/*"] },
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strict": true,
     },
-    "include": [
-        "src/**/*"
-    ]
+    "include": ["src/**/*", "config", "src/router.ts"],
+    "exclude": ["node_modules"]
 }
