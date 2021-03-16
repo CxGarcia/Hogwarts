@@ -1,0 +1,11 @@
+{
+  "mockService1": {
+    "name": "cleaning service"
+  },
+  "mockService2": {
+    "name": "painting service"
+  },
+  "mockWrongService": {
+    "service": "some service"
+  }
+}
