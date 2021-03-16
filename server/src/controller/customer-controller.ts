@@ -5,10 +5,7 @@ import { Customer } from '../model/index';
 
 const secretToken: string = process.env.SECRET_TOKEN || '';
 
-const registerUser = async (
-  req: express.Request,
-  res: express.Response
-): Promise<void> => {
+const registerUser = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const { name, phone, email, location } = req.body;
     let { password } = req.body;
@@ -22,25 +19,18 @@ const registerUser = async (
       phone,
       email,
       password,
-      location,
+      location
     });
 
     const token = jwt.sign({ id: customer.id }, secretToken);
 
-    res
-      .header('x-auth-token', token)
-      .header('access-control-expose-headers', 'x-auth-token')
-      .status(201)
-      .send(token);
+    res.header('x-auth-token', token).header('access-control-expose-headers', 'x-auth-token').status(201).send(token);
   } catch (error) {
     res.status(400).send(error);
   }
 };
 
-const getCustomerById = async (
-  req: express.Request,
-  res: express.Response
-): Promise<void> => {
+const getCustomerById = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const { id } = req.params;
     const customer = await Customer.findAll({ where: { id } });
@@ -51,13 +41,10 @@ const getCustomerById = async (
   }
 };
 
-const getAllCustomers = async (
-  req: express.Request,
-  res: express.Response
-): Promise<void> => {
+const getAllCustomers = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const customer = await Customer.findAll({
-      include: { all: true, nested: true },
+      include: { all: true, nested: true }
     });
     res.status(200).send(customer);
   } catch (error) {
