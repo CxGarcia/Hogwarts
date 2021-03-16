@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc; nodemon",
     "dev": "nodemon src/index.ts",
-    "test": "NODE_ENV=test && mocha ./__tests__/tests-router.js"
+    "test": "NODE_ENV=test && mocha ./__tests__/index.test.js"
   },
   "keywords": [],
   "author": "",
