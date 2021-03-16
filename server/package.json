@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc; nodemon",
     "dev": "nodemon src/index.ts",
-    "test": "NODE_ENV=test && mocha ./__tests__/tests-router.js"
+    "test": "NODE_ENV=test; npm run build && mocha ./__tests__/technicians.test.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/morgan": "^1.9.2",
     "@types/node": "^14.14.33",
+    "@types/validator": "^13.1.3",
     "chai": "^4.3.4",
     "eslint": "^7.21.0",
     "mocha": "^8.3.2",
