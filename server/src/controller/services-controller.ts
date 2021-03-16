@@ -2,10 +2,7 @@ import express from 'express';
 // import Service from '../model/services-model';
 import { Service } from '../model/index';
 
-const addService = async (
-  req: express.Request,
-  res: express.Response
-): Promise<void> => {
+const addService = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const { name } = req.body;
     const service = await Service.create({ name });
@@ -16,10 +13,7 @@ const addService = async (
   }
 };
 
-const getAllServices = async (
-  req: express.Request,
-  res: express.Response
-): Promise<void> => {
+const getAllServices = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const service = await Service.findAll();
     res.status(200).send(service);
@@ -28,17 +22,14 @@ const getAllServices = async (
   }
 };
 
-const updateService = async (
-  req: express.Request,
-  res: express.Response
-): Promise<void> => {
+const updateService = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     await Service.update(
       { name: req.body.name },
       {
         where: {
-          id: req.params.id,
-        },
+          id: req.params.id
+        }
       }
     );
 
@@ -48,15 +39,12 @@ const updateService = async (
   }
 };
 
-const deleteService = async (
-  req: express.Request,
-  res: express.Response
-): Promise<void> => {
+const deleteService = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     await Service.destroy({
       where: {
-        id: req.params.id,
-      },
+        id: req.params.id
+      }
     });
 
     res.status(200).send('Service Deleted');
