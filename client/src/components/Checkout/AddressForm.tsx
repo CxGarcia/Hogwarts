@@ -27,6 +27,8 @@ const AddressForm: React.FC<{ createOrder: CreateOrder; handleNext: () => void; 
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
+    console.log('OnSubmit O_o');
+
     const { name, email, mobile, address, ApartmentSize, rooms, date } = data;
     let amount = 0;
 
@@ -54,7 +56,7 @@ const AddressForm: React.FC<{ createOrder: CreateOrder; handleNext: () => void; 
 
   return (
     <React.Fragment>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={() => handleSubmit(onSubmit)}>
         <Typography variant="h6" gutterBottom>
           Service Details
         </Typography>

@@ -20,17 +20,17 @@ const Nav: React.FC<{ user: UserInterface; logOut: React.MouseEventHandler }> = 
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link page-scroll" href="/#SERVICES">
+            <a className="nav-services nav-link page-scroll" href="/#SERVICES">
               SERVICES
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link page-scroll" href="/#BOOK">
+            <a className="nav-book nav-link page-scroll" href="/#BOOK">
               BOOK
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link page-scroll" href="/#CONTACT">
+            <a className="nav-contact nav-link page-scroll" href="/#CONTACT">
               CONTACT US
             </a>
           </li>
@@ -39,7 +39,7 @@ const Nav: React.FC<{ user: UserInterface; logOut: React.MouseEventHandler }> = 
             {Object.keys(user).length !== 0 ? (
               <>
                 <Link to="/profile">
-                  <button className="nav-btn">Welcome {user.name}</button>
+                  <button className="user-btn nav-btn">Welcome {user.name}</button>
                 </Link>
                 <Link to="/logOut">
                   <button onClick={logOut} className=" nav-btn">
@@ -49,7 +49,7 @@ const Nav: React.FC<{ user: UserInterface; logOut: React.MouseEventHandler }> = 
               </>
             ) : (
               <Link to="/login">
-                <button className="nav-btn">LOG IN</button>
+                <button className="nav-login nav-btn">LOG IN</button>
               </Link>
             )}
           </li>

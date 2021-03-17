@@ -31,7 +31,11 @@ const App: React.FC<Record<string, never>> = () => {
     const jwt = localStorage.getItem('token');
     if (jwt) {
       const { id } = jwt_decode<JWTToken>(jwt, {});
-      axios(`http://localhost:4000/customer/${id}`).then((res: AxiosResponse) => setUser(res.data[0]));
+      axios(`http://localhost:4000/customer/${id}`).then((res: AxiosResponse) => {
+        console.log('res ==>', res);
+        console.log('res.data ==>', res.data);
+        return setUser(res.data);
+      });
     }
     //getting a list of all orders to pass it to Dashboard
     axios('http://localhost:4000/orders').then((res: AxiosResponse) => {
