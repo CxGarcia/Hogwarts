@@ -1,0 +1,34 @@
+{
+  "mockTechnician1": {
+    "email": "sgt.powell@diehard.com",
+    "password": "WannabeMainCast",
+    "name": "Weird Al",
+    "phone": "",
+    "location": ""
+  },
+  "mockUser1": {
+    "name": "Bruce Willis",
+    "email": "bruce@diehard.me",
+    "password": "Yippee-ki-yay",
+    "phone": "123456789",
+    "location": "123 Grove Island. LA, California. 08026"
+  },
+  "mockService1": {
+    "name": "cleaning service"
+  },
+  "mockOrder1": {
+    "cost": 300,
+    "paymentMethod": "cash",
+    "technicianId": 1,
+    "customerId": 1,
+    "serviceId": 1
+  },
+  "mockOrder2": {
+    "cost": 500,
+    "paymentMethod": "card",
+    "technicianId": 1,
+    "customerId": 1,
+    "serviceId": 1
+  }
+
+}

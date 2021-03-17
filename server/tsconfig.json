@@ -3,6 +3,7 @@
         "module": "commonjs",
         "esModuleInterop": true,
         "target": "es6",
+        "allowJs": true,
         "noImplicitAny": true,
         "moduleResolution": "node",
         "sourceMap": true,
@@ -14,6 +15,6 @@
         "strictBindCallApply": true,
         "strict": true,
     },
-    "include": ["src/**/*", "config", "src/router.ts"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules"]
 }
