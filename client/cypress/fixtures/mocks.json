@@ -1,0 +1,87 @@
+{
+  "Customers": {
+    "1": {
+      "id": 1,
+      "name": "Bruce Willis",
+      "email": "bruce@diehard.me",
+      "password": "Yippee-ki-yay",
+      "phone": "123456789",
+      "location": "123 Grove Island. LA, California. 08026",
+      "orders": []
+
+
+    },
+    "2": {
+      "id": 2,
+      "email": "allan@diehard.me",
+      "password": "whereAreYouHidingJ0hn",
+      "name": "Allan Rickman",
+      "phone": "123456789",
+      "location": "123 Grove Island. LA, California. 08026",
+      "orders": []
+
+    },
+    "incomplete1": {
+      "email": "",
+      "password": "WannabeMainCast",
+      "name": "Al Powell",
+      "phone": "123456789",
+      "location": "123 Grove Island. LA, California. 08026"
+
+    },
+    "incomplete2": {
+      "email": "sgt.powell@diehard.com",
+      "password": "",
+      "name": "Al Powell",
+      "phone": "123456789",
+      "location": "123 Grove Island. LA, California. 08026"
+    }
+  },
+  "technicians": {
+    "1": {
+      "id": 1,
+      "email": "sgt.powell@diehard.com",
+      "password": "WannabeMainCast",
+      "name": "Sargeant Powell",
+      "phone": "123456789",
+      "location": "123 Grove Island. LA, California. 08026"
+    },
+    "2": {
+      "id": 2,
+      "email": "sgt.powell@diehard.com",
+      "password": "WannabeMainCast",
+      "name": "Weird Al",
+      "phone": "",
+      "location": ""
+    }
+  },
+  "services": {
+    "1": {
+      "id": 1,
+      "name": "Cleaning"
+    },
+    "2": {
+      "id": 2,
+      "name": "Fix car"
+    }
+  },
+  "orders": {
+    "1": {
+      "id": 1,
+      "cost": 300,
+      "paymentMethod": "cash",
+      "technicianId": 1,
+      "customerId": 1,
+      "serviceId": 1
+    },
+    "2": {
+      "id": 2,
+      "cost": 500,
+      "paymentMethod": "card",
+      "technicianId": 1,
+      "customerId": 1,
+      "serviceId": 1
+    }
+  }
+
+}

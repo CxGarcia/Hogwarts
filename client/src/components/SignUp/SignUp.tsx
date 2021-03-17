@@ -19,7 +19,6 @@ const SignUp: React.FC<SignUpProps> = () => {
   const onSubmit = async ({ name, email, phone, location, password }: CustomerInterface) => {
     try {
       const response: any = await addCustomer(name, phone, email, password, location);
-      console.log('response from signup react ==>', response);
       localStorage.setItem('token', response.headers['x-auth-token']);
       window.location.href = '/';
     } catch (error) {
