@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc; nodemon",
     "dev": "nodemon src/index.ts",
-    "test": "NODE_ENV=test; mocha ./__tests__/customers.test.js",
+    "test": "NODE_ENV=test; npm run build && mocha ./__tests__/*.test.js",
     "build": "tsc"
   },
   "keywords": [],

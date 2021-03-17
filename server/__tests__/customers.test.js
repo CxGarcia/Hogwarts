@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const mocks = require('./mocks.json');
 const server = require('../dist/index');
 const request = require('supertest');
