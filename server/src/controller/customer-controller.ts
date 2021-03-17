@@ -22,6 +22,8 @@ const registerUser = async (req: express.Request, res: express.Response): Promis
       location
     });
 
+    console.log(customer);
+
     const token = jwt.sign({ id: customer.id }, secretToken);
 
     res.header('x-auth-token', token).header('access-control-expose-headers', 'x-auth-token').status(201).send(token);
@@ -33,7 +35,7 @@ const registerUser = async (req: express.Request, res: express.Response): Promis
 const getCustomerById = async (req: express.Request, res: express.Response): Promise<void> => {
   try {
     const { id } = req.params;
-    const customer = await Customer.findAll({ where: { id } });
+    const customer = await Customer.findOne({ where: { id } });
     res.status(200).send(customer);
   } catch (error) {
     console.log(error);
