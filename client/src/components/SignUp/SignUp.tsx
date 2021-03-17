@@ -18,16 +18,15 @@ const SignUp: React.FC<SignUpProps> = () => {
 
   const onSubmit = async ({ name, email, phone, location, password }: CustomerInterface) => {
     try {
-      console.log('hiya');
-      // const response: any = await addCustomer(name, phone, email, password, location);
-      // console.log('response from signup react ==>', response);
-      // localStorage.setItem('token', response.headers['x-auth-token']);
-      // window.location.href = '/';
+      const response: any = await addCustomer(name, phone, email, password, location);
+      console.log('response from signup react ==>', response);
+      localStorage.setItem('token', response.headers['x-auth-token']);
+      window.location.href = '/';
     } catch (error) {
-      // if (error.response && error.response.status === 400) {
-      //   toast.error('User Already Exist');
-      // }
-      // console.log('ERROR', error);
+      if (error.response && error.response.status === 400) {
+        toast.error('User Already Exist');
+      }
+      console.log('ERROR', error);
     }
   };
 

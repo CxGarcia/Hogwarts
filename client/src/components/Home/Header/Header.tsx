@@ -17,7 +17,7 @@ const Header: React.FC<{ user: UserInterface }> = ({ user }) => {
 
           {Object.keys(user).length !== 0 ? null : (
             <Link to="/signUp">
-              <button>SIGN UP</button>
+              <button id="signup-btn">SIGN UP</button>
             </Link>
           )}
         </div>
